@@ -1,0 +1,19 @@
+{
+  "plugins": [
+    "transform-runtime"
+  ],
+	"env": {
+			"development": {
+        "presets": [
+          ["env", {
+              "modules": false
+          }],
+          "react",
+          "stage-2"
+        ],
+				"plugins": [
+          "react-hot-loader/babel"
+        ]
+			}
+		}
+}
