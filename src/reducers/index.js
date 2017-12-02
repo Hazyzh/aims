@@ -2,8 +2,8 @@ import { combineReducers } from 'redux'
 
 import test from './testReducer.js'
 
-const appStore = combineReducers({
+const rootReducer = combineReducers({
   test
 })
 
-export default appStore
+export default rootReducer

@@ -1,7 +1,6 @@
 const initstate = {
-  a: 1
+  a: 'assss'
 }
-
 /**
  * test reducer
  * @param  {object}  [state={}] initstate

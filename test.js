@@ -1,1 +1,1 @@
-process.env.NODE_ENV = 'aasa';
+process.env.NODE_ENV = 'aasa'

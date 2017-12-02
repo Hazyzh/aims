@@ -12,22 +12,22 @@ const logger = createLogger({
   collapsed: true
 })
 
-let store = createStore(
-  rootReducer,
-  applyMiddleware(
-    logger,
-    sagaMiddleware
+export default function configureStore() {
+  let store = createStore(
+    rootReducer,
+    applyMiddleware(
+      logger,
+      sagaMiddleware
+    )
   )
-)
+  sagaMiddleware.run(rootSaga)
+  if (module.hot) {
+    module.hot.accept('../reducers', () => {
+      const nextReducer = require('../reducers').default
+      console.log(store)
+      store.replaceReducer(nextReducer)
+    })
+  }
 
-sagaMiddleware.run(rootSaga)
-
-if (module.hot) {
-  // Enable Webpack hot module replacement for reducers
-  module.hot.accept('../reducers', () => {
-    const nextRootReducer = require('../reducers/index.js')
-    store.replaceReducer(nextRootReducer)
-  })
+  return store
 }
-
-export default store

@@ -1,8 +1,3 @@
-import React from 'react'
+import Home from './containers/Home.js'
 
-const Login = () =>
-  <div>
-    login
-  </div>
-
-export default Login
+export default Home
