@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const Home = ({ a }) =>
   <div>
-    <h3>sssaa</h3>
+    <h3>cr</h3>
     { a }
   </div>
 

@@ -13,7 +13,7 @@ const logger = createLogger({
 })
 
 export default function configureStore() {
-  let store = createStore(
+  const store = createStore(
     rootReducer,
     applyMiddleware(
       logger,
@@ -24,7 +24,7 @@ export default function configureStore() {
   if (module.hot) {
     module.hot.accept('../reducers', () => {
       const nextReducer = require('../reducers').default
-      console.log(store)
+      console.log(nextReducer)
       store.replaceReducer(nextReducer)
     })
   }

@@ -1,18 +1,18 @@
 {
-	"env": {
-			"development": {
-        "presets": [
-          ["env", {
-              "modules": false,
-              "loose": true
-          }],
-          "react",
-          "stage-2"
-        ],
-				"plugins": [
-          "transform-runtime",
-          "react-hot-loader/babel"
-        ]
-			}
+  "env": {
+    "development": {
+      "presets": [
+        ["env", {
+            "modules": false,
+            "loose": true
+        }],
+        "react",
+        "stage-2"
+      ],
+			"plugins": [
+        "transform-runtime",
+        "react-hot-loader/babel"
+      ]
 		}
+	}
 }
