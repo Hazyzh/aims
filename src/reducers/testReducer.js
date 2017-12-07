@@ -1,5 +1,5 @@
 const initstate = {
-  a: 'x'
+  a: 'xees'
 }
 /**
  * test reducer

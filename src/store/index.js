@@ -23,8 +23,8 @@ export default function configureStore() {
   sagaMiddleware.run(rootSaga)
   if (module.hot) {
     module.hot.accept('../reducers', () => {
+      console.log('reducers change')
       const nextReducer = require('../reducers').default
-      console.log(nextReducer)
       store.replaceReducer(nextReducer)
     })
   }
