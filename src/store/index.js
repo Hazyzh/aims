@@ -21,6 +21,7 @@ export default function configureStore() {
     )
   )
   sagaMiddleware.run(rootSaga)
+  // 目前 redux 热加载无效 强制刷新
   if (module.hot) {
     module.hot.accept('../reducers', () => {
       console.log('reducers change')

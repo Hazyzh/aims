@@ -4,7 +4,7 @@
   "description": "my project aims",
   "main": "index.js",
   "scripts": {
-    "dev": "node build/dev-server.js",
+    "dev": "export NODE_ENV=development && node build/dev-server.js",
     "start": "npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -50,6 +50,7 @@
     "redux-saga": "^0.16.0",
     "sequelize": "^4.27.0",
     "standard": "^10.0.3",
+    "uuid": "^3.1.0",
     "webpack": "^3.8.1",
     "webpack-dev-middleware": "^1.12.2",
     "webpack-hot-middleware": "^2.21.0",

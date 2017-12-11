@@ -22,5 +22,8 @@ const render = Component => {
 render(App)
 
 if (module.hot) {
-  module.hot.accept('./router', () => { render(App) })
+  module.hot.accept('./router', () => {
+    console.log('app')
+    render(App)
+  })
 }
