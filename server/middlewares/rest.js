@@ -28,21 +28,21 @@ module.exports = {
     // REST API前缀，默认为/api/:
     pathPrefix = pathPrefix || '/api/v1/'
     return async (ctx, next) => {
+      // 绑定rest()方法:
+      ctx.rest = (data, message) => {
+        ctx.response.type = 'application/json'
+        ctx.response.body = restifySucceed(data, message)
+      }
+      ctx.restError = (code, message) => {
+        ctx.response.type = 'application/json'
+        ctx.response.body = restifyError(code, message)
+      }
       // 是否是REST API前缀?
       if (ctx.request.path.startsWith(pathPrefix)) {
         const { token = '' } = ctx.request.header
         const userInfo = getData(token)
         if (!userInfo) return ctx.throw(401)
         ctx.userInfo = userInfo
-        // 绑定rest()方法:
-        ctx.rest = (data, message) => {
-          ctx.response.type = 'application/json'
-          ctx.response.body = restifySucceed(data, message)
-        }
-        ctx.restError = (code, message) => {
-          ctx.response.type = 'application/json'
-          ctx.response.body = restifyError(code, message)
-        }
         await next()
       } else {
         await next()

@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types'
-import { Row, Col, Input, Avatar, Form, Divider, DatePicker } from 'antd'
+import { Row, Col, Input, Avatar, Form, Divider, DatePicker, Button, message } from 'antd'
 import moment from 'moment'
+
 const { TextArea } = Input
+const FormItem = Form.Item
 
 // 只能选择三个月内的目标
 function disabledDate(current) {
@@ -18,9 +20,31 @@ function getAimDays(deadline) {
 }
 
 class AddAims extends Component {
+  addHandler = () => {
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        const { content, deadline, title } = values
+        const params = {
+          content,
+          title,
+          deadline: deadline.format('YYYY-MM-DD')
+        }
+        console.log(params)
+        this.props.addHandler(params)
+      } else {
+        console.log(err)
+        for (let i in err) {
+          message.warning(err[i].errors[0].message)
+          break
+        }
+      }
+    })
+  }
+
   render () {
     const { getFieldDecorator, getFieldValue } = this.props.form
     const time = getAimDays(getFieldValue('deadline'))
+    const { loading } = this.props
     return (
       <div>
         <div>
@@ -38,27 +62,37 @@ class AddAims extends Component {
             </span>
           </Col>
           <Col span={6}>
-            {getFieldDecorator('title')(
-              <Input
-                placeholder='标题' />
-            )}
+            <FormItem>
+              {getFieldDecorator('title', {
+                rules: [{ required: true, message: '必须输入标题' }]
+              })(
+                <Input
+                  placeholder='标题' />
+              )}
+            </FormItem>
           </Col>
         </Row>
         <p>输入目标的标题，尽量简介明了，文字长度30个文字以内</p>
         <h3>具体描述</h3>
         <Row>
           <Col span={8}>
-            {getFieldDecorator('content')(
-              <TextArea
-                rows={8}
-                placeholder='请输入目标的具体信息' />
-            )}
+            <FormItem>
+              {getFieldDecorator('content', {
+                rules: [{ required: true, message: '必须输入内容描述' }]
+              })(
+                <TextArea
+                  rows={8}
+                  placeholder='请输入目标的具体信息' />
+              )}
+            </FormItem>
           </Col>
         </Row>
         <Row className='AddAims-deadline'>
           <Col>
             <span className='title'>截止日期</span>
-            {getFieldDecorator('deadline')(
+            {getFieldDecorator('deadline', {
+              rules: [{ required: true, message: '必须选择截止日期' }]
+            })(
               <DatePicker
                 showToday={false}
                 placeholder='请选择截止日期'
@@ -66,14 +100,18 @@ class AddAims extends Component {
                 disabledDate={disabledDate} />
             )}
             <span className='tips'>
-              {time &&
-                <span>
-                  距离选中的截止时间还有 <span className='dead-data'>{time}</span> 天
-                </span>
+              {time ? <span> 距离选中的截止时间还有 <span className='dead-data'>{time}</span> 天 </span>
+                : <span>请选择截止日期</span>
               }
             </span>
           </Col>
         </Row>
+        <Button
+          loading={loading}
+          onClick={this.addHandler}
+          type='primary' >
+          发布
+        </Button>
       </div>
     )
   }

@@ -9,7 +9,8 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
     min: 0,
     idle: 30000
   },
-  timezone: '+08:00'
+  timezone: '+08:00',
+  operatorAliases: false
 })
 
 module.exports = sequelize

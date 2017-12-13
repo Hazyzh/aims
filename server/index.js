@@ -6,6 +6,8 @@ const bodyParser = require('koa-bodyparser')
 const routers = require('./middlewares/controller.js')
 // restify api 格式请求处理
 const rests = require('./middlewares/rest.js')
+// proxy ctx.body
+const configBody = require('./middlewares/configBody.js')
 
 app.use(async (ctx, next) => {
   const start = Date.now()
@@ -16,6 +18,7 @@ app.use(async (ctx, next) => {
 
 app
   .use(bodyParser())
+  .use(configBody())
   .use(rests.restify())
   .use(routers())
 
