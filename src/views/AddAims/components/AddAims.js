@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { Row, Col, Input, Avatar, Form, Divider, DatePicker, Button, message } from 'antd'
 import moment from 'moment'
 
@@ -53,7 +53,7 @@ class AddAims extends Component {
           <Divider />
         </div>
         <Row className='AddAims-avatar-box'>
-          <Col span={2}>
+          <Col span={4}>
             <Avatar className='avatar'>
               Hai_Dai
             </Avatar>
@@ -61,7 +61,7 @@ class AddAims extends Component {
               / Hazyzh
             </span>
           </Col>
-          <Col span={6}>
+          <Col span={12}>
             <FormItem>
               {getFieldDecorator('title', {
                 rules: [{ required: true, message: '必须输入标题' }]
@@ -75,7 +75,7 @@ class AddAims extends Component {
         <p>输入目标的标题，尽量简介明了，文字长度30个文字以内</p>
         <h3>具体描述</h3>
         <Row>
-          <Col span={8}>
+          <Col span={16}>
             <FormItem>
               {getFieldDecorator('content', {
                 rules: [{ required: true, message: '必须输入内容描述' }]
@@ -118,6 +118,9 @@ class AddAims extends Component {
 }
 
 AddAims.propTypes = {
+  loading: PropTypes.bool.isRequired,
+
+  addHandler: PropTypes.func.isRequired
 }
 
 export default Form.create()(AddAims)

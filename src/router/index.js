@@ -1,8 +1,11 @@
 import React from 'react'
 // import Login from '../views/Login'
 import AddAims from '../views/AddAims'
+import App from '../views/App/index.js'
 
-const App = () =>
-  <AddAims />
+const Routers = () =>
+  <App>
+    <AddAims />
+  </App>
 
-export default App
+export default Routers
