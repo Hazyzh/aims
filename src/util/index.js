@@ -11,3 +11,19 @@ export const createReducer = (initState, handlers) => (state = initState, action
     return state
   }
 }
+/**
+ * key map 创建
+ */
+export const createTypes = obj => {
+  var key
+  var mirrored = {}
+
+  if (obj && typeof obj === 'object') {
+    for (key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        mirrored[key] = key
+      }
+    }
+  }
+  return mirrored
+}

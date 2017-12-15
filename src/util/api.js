@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getToken } from '../util/token.js'
+import { getToken } from './token.js'
 
 const Api = axios.create({
   baseURL: '/api/v1/',
@@ -39,7 +39,14 @@ Api.interceptors.response.use(
     return Promise.reject(error.response.data)
   }
 )
-
+/**
+ * 封装的 resfapi 请求方法
+ * @param  {string} method 方法类型
+ * @param  {string} url    请求地址
+ * @param  {object} params params 参数
+ * @param  {object} data   data 参数如果不是 get 请求, 还没有穿传入 data 参数则 params 为 data
+ * @return {object}        ajax 请求的 promise 对象
+ */
 export const fetchHanlder = (method, url, params, data) => {
   if (method !== 'get' && !data) {
     data = params

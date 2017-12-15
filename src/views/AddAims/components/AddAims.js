@@ -20,6 +20,10 @@ function getAimDays(deadline) {
 }
 
 class AddAims extends Component {
+  componentWillReceiveProps = (nextProps) => {
+    console.log(1, nextProps)
+  }
+
   addHandler = () => {
     this.props.form.validateFields((err, values) => {
       if (!err) {
@@ -57,9 +61,9 @@ class AddAims extends Component {
             <Avatar className='avatar'>
               Hai_Dai
             </Avatar>
-            <span>
+            <a>
               / Hazyzh
-            </span>
+            </a>
           </Col>
           <Col span={12}>
             <FormItem>

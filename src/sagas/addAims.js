@@ -1,18 +1,19 @@
 import { call, takeEvery, put } from 'redux-saga/effects'
 import { post_addHandler } from '../actions/addAims_action.js'
+import { ADD_AIMS_SUCCEED, ADD_AIMS_FAILED, ADD_AIMS_HANDER } from '@/types'
 
 export function* fetchres (action) {
   const { payload } = action
   try {
     const data = yield call(post_addHandler, payload)
-    yield put({type: 'ADD_AIMS_SUCCEED', data})
+    yield put({type: ADD_AIMS_SUCCEED, data})
   } catch (err) {
-    yield put({type: 'ADD_AIMS_FAILED', error: err})
+    yield put({type: ADD_AIMS_FAILED, error: err})
   }
 }
 
 function* addAimsSaga () {
-  yield takeEvery('ADD_AIMS_HANDER', fetchres)
+  yield takeEvery(ADD_AIMS_HANDER, fetchres)
 }
 
 export default addAimsSaga
