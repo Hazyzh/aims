@@ -13,7 +13,8 @@ var user = sequelize.define('aims-account', {
   avatar_url: Sequelize.STRING(255),
   email: Sequelize.STRING(64)
 }, {
-  deletedAt: false
+  deletedAt: false,
+  timestamps: true
 })
 
 module.exports = user

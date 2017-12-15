@@ -1,6 +1,8 @@
 import { call, takeEvery, put } from 'redux-saga/effects'
 import { post_addHandler } from '../actions/addAims_action.js'
-import { ADD_AIMS_SUCCEED, ADD_AIMS_FAILED, ADD_AIMS_HANDER } from '@/types'
+import types from '@/types'
+
+const { ADD_AIMS_SUCCEED, ADD_AIMS_FAILED, ADD_AIMS_HANDER } = types
 
 export function* fetchres (action) {
   const { payload } = action

@@ -1,4 +1,4 @@
-import AddLists from './containers/AddLists.js'
+import AimsList from './containers/AimsList.js'
 import './index.less'
 
-export default AddLists
+export default AimsList

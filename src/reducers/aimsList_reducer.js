@@ -1,18 +1,23 @@
 import { createReducer } from '../util/index.js'
+import types from '@/types'
 
+const { HOME_VIEW_GET_DATALIST, HOME_VIEW_GET_DATALIST_SUCCEED, HOME_VIEW_GET_DATALIST_FAILED } = types
 const initstate = {
-  loading: false
+  aimsList: [],
+  pagination: {},
+  getlistState: false
 }
 
 export default createReducer(initstate, {
-  'ADD_AIMS_HANDER': (state, action) => {
-    console.log(action)
-    return { ...state, loading: true }
+  [HOME_VIEW_GET_DATALIST]: (state, action) => {
+    return { ...state, getlistState: true }
   },
-  'ADD_AIMS_SUCCEED': (state, action) => {
-    return { ...state, loading: false }
+  [HOME_VIEW_GET_DATALIST_SUCCEED]: (state, action) => {
+    const { aimsList, pagination } = action
+
+    return { ...state, getlistState: false, aimsList, pagination }
   },
-  'ADD_AIMS_FAILED': (state, action) => {
-    return { ...state, loading: false }
+  [HOME_VIEW_GET_DATALIST_FAILED]: (state, action) => {
+    return { ...state, getlistState: false }
   }
 })

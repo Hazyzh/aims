@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { getToken } from './token.js'
+import { message } from 'antd'
 
 const Api = axios.create({
   baseURL: '/api/v1/',
@@ -25,6 +26,7 @@ Api.interceptors.response.use(
     if (response.data.code === 0) {
       return response.data
     } else {
+      message.error(response.data.message)
       return Promise.reject(response.data)
     }
   },

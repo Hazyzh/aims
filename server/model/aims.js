@@ -14,7 +14,8 @@ var aims = sequelize.define('aims-aim', {
   aim_deadline: Sequelize.DATE,
   aim_status: Sequelize.INTEGER
 }, {
-  deletedAt: false
+  deletedAt: false,
+  timestamps: true
 })
 
 module.exports = aims
