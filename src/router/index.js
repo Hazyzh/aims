@@ -4,9 +4,12 @@ import App from '../views/App/index.js'
 import Login from '../views/Login'
 // 新增 aims
 import AddAims from '../views/AddAims'
-// aims 列表
-import AddLists from '../views/AimsLists'
-
+// 主页
+import Home from '../views/Home'
+// 详情页
+import AimsDetail from '../views/AimsDetail'
+// test router
+import Test from './Test.js'
 import {
   BrowserRouter as Router,
   Route
@@ -16,9 +19,11 @@ const Routers = () =>
   <Router>
     <div>
       <App>
-        <Route exact path='/addAims' component={AddAims} />
-        <Route exact path='/aimsLists' component={AddLists} />
+        <Route exact path='/' component={Home} />
         <Route path='/login' component={Login} />
+        <Route path='/addAims' component={AddAims} />
+        <Route path='/aimsDetail/:aimId' component={AimsDetail} />
+        <Route path='/test' component={Test} />
       </App>
     </div>
   </Router>

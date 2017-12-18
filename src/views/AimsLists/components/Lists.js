@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import { List, Icon, Tag, Card } from 'antd'
 import { getTimeInfo } from '@/util'
-
+import { Link } from 'react-router-dom'
 // 具体的按钮
 const IconText = ({ type, text }) => (
   <span>
@@ -15,13 +15,34 @@ const IconText = ({ type, text }) => (
 const colors = [
   '#52c41a', '#52c41a', '#389e0d', '#237804', '#135200',
   '#ffc069', '#fa8c16', '#d46b08', '#ad4e00', '#873800',
-  '#ffa39e', '#ff7875', '#cf1322', '#a8071a', '#5c0011'
+  '#ffa39e', '#ff7875', '#cf1322', '#a8071a', '#5c0011',
+  '#2fcc9a', '#6D7C85'
 ]
+
+const getInfo = (aimStatus, itemTimeInfo) => {
+  let color, text
+  if (aimStatus === 0) {
+    color = itemTimeInfo.proportion
+    text = itemTimeInfo.isOver ? `超出 ${itemTimeInfo.lastDays} 天` : `剩余 ${itemTimeInfo.lastDays} 天`
+  } else if (aimStatus === 1) {
+    color = 15
+    text = '已完成'
+  } else if (aimStatus === 2) {
+    color = 16
+    text = '已放弃'
+  }
+
+  return { color, text }
+}
 
 // 渲染每一项的函数
 const renderHandler = item => {
-  const itemTimeInfo = getTimeInfo(item)
-
+  let itemTimeInfo = {}
+  const aimStatus = item.aim_status
+  if (aimStatus === 0) {
+    itemTimeInfo = getTimeInfo(item)
+  }
+  const renderInfo = getInfo(aimStatus, itemTimeInfo)
   return (
     <List.Item
       key={item.title}
@@ -35,14 +56,14 @@ const renderHandler = item => {
               <span className='title-times'>剩余时间</span>
             </div>
           }
-          bodyStyle={{ background: colors[itemTimeInfo.proportion], width: '275px' }} >
+          bodyStyle={{ background: colors[renderInfo.color], width: '275px' }} >
           <div className='last-days'>
-            {itemTimeInfo.isOver ? `超出 ${itemTimeInfo.lastDays} 天` : `剩余 ${itemTimeInfo.lastDays} 天`}
+            {renderInfo.text}
           </div>
         </Card>
       } >
       <List.Item.Meta
-        title={<a href={item.href}>{item.aim_title}</a>}
+        title={<Link to={`/aimsDetail/${item.id}`}>{item.aim_title}</Link>}
         description={createDescription(item)} />
       {item.aim_content}
     </List.Item>
