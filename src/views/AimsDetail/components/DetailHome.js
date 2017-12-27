@@ -7,6 +7,7 @@ class DetailHome extends Component {
   componentWillMount() {
     const { match: { params } } = this.props
     this.props.getDetailInfo(params)
+    this.props.getAimsChangeList(params)
   }
   render() {
     return (
@@ -16,7 +17,8 @@ class DetailHome extends Component {
 }
 
 DetailHome.propTypes = {
-  getDetailInfo: PropTypes.func.isRequired
+  getDetailInfo: PropTypes.func.isRequired,
+  getAimsChangeList: PropTypes.func.isRequired
 }
 
 export default DetailHome
