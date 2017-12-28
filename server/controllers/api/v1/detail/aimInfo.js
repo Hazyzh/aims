@@ -17,16 +17,15 @@ const fn_get = async (ctx, next) => {
 }
 // 增加
 const fn_post = async (ctx, next) => {
-  const { updateContent, userId, aimId } = ctx.body
-  console.log('ruru')
-  if (!updateContent || !userId || !aimId) return ctx.restError(-1, '参数格式不对')
+  const { updateContent, userId, aimId, aimStatus } = ctx.body
+  if (ctx.checkParams(updateContent, userId, aimId, aimStatus)) return ctx.restError(-1, '参数格式不对')
   const userInfo = ctx.userInfo
   if (userInfo.id !== userId) return ctx.restError(-1, '没有权限进行此操作')
   try {
     const updateLog = await updateLists.create({
       aim_id: aimId,
       update_content: updateContent,
-      aim_status: 0
+      aim_status: aimStatus
     })
 
     ctx.rest(updateLog.id, '添加目标成功')

@@ -14,6 +14,7 @@ const initstate = {
   // aim 详情
   aimDetailInfo: {},
   updateContent: {},
+  aimStatus: {},
   updateLoading: false,
   // upd 列表
   aimDetailChangeList: []

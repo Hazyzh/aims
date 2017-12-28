@@ -6,7 +6,8 @@ import { detailFieldsChange, updateAimInfo } from '@/actions/aimDetail_action.js
 const mapStateToProps = ({aimDetail}) => ({
   aimDetailInfo: aimDetail.aimDetailInfo,
   updateContent: aimDetail.updateContent,
-  loading: aimDetail.updateLoading
+  loading: aimDetail.updateLoading,
+  aimStatus: aimDetail.aimStatus
 })
 
 const mapDispatchToProps = dispatch => ({
