@@ -14,6 +14,7 @@ const fn_post = async (ctx, next) => {
       create_user: userId
     })
     await aims.increment('inner_counts', { where: { 'id': aimId } })
+    if (pid !== '0') { await comments.increment('inner_counts', { where: { 'id': pid } }) }
     ctx.rest(updateLog.id, '添加评论成功')
   } catch (err) {
     console.log('err', err)
