@@ -44,7 +44,17 @@ export default createReducer(initstate, {
   },
   [AIM_DETAIL_POST_DETAIL_INFO_SUCCEED]: (state, action) => {
     message.success('更新成功')
-    return { ...state, updateLoading: false, updateContent: {}, aimStatus: {} }
+    const { aim_status } = action
+    return {
+      ...state,
+      updateLoading: false,
+      updateContent: {},
+      aimStatus: {},
+      aimDetailInfo: {
+        ...state.aimDetailInfo,
+        aim_status
+      }
+    }
   },
   [AIM_DETAIL_POST_DETAIL_INFO_FAILED]: (state, action) => {
     return { ...state, updateLoading: false }

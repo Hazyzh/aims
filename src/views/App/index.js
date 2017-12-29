@@ -9,7 +9,7 @@ const { Header, Footer, Content } = Layout
 const App = ({children}) =>
   <div>
     <Layout>
-      <Header><Link to='/'>Header</Link></Header>
+      <Header style={{textAlign: 'center'}}><Link to='/'>Header</Link></Header>
       <Content>
         <div className='App-content-box'>
           {children}

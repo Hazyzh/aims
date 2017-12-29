@@ -41,8 +41,9 @@ export function* changeAimInfo(action) {
 
   try {
     const data = yield call(post_aimInfo, newParams)
+    const aim_status = newParams.aimStatus
     yield fork(fetchUpdateRes)
-    yield put({type: AIM_DETAIL_POST_DETAIL_INFO_SUCCEED, data})
+    yield put({type: AIM_DETAIL_POST_DETAIL_INFO_SUCCEED, data, aim_status})
   } catch (err) {
     yield put({type: AIM_DETAIL_POST_DETAIL_INFO_FAILED, error: err})
   }
