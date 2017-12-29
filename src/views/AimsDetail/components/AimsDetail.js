@@ -6,6 +6,7 @@ import AimSteps from '../containers/AimSteps.js'
 import DetailComment from '../containers/DetailComment.js'
 import DetailTitle from '../containers/DetailTitle.js'
 import AimComment from '../containers/AimComment.js'
+import AimCommentList from '../containers/AimCommentList.js'
 
 const AimsDetail = ({ loading, aimDetailInfo, userInfo }) =>
   <Spin
@@ -22,6 +23,7 @@ const AimsDetail = ({ loading, aimDetailInfo, userInfo }) =>
     }
     <Divider />
     <AimComment />
+    <AimCommentList />
   </Spin>
 
 AimsDetail.propTypes = {

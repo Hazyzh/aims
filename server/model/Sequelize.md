@@ -27,13 +27,12 @@ var user = yield User.create({
  * {findAndCountAll} 查询数据并返会总数
  * {findOrCreate} 查询如果不存在就创建
  */
-var users = yield User.findAll({
-    'attributes': [
-        'emp_id', ['nick', 'user_nick']
-    ],
-    'where': {
-      id: [1, 2, 3],
-      name: 'asas'
+var users = yield User.update({
+    {'nick': 'hhhh'},
+    {
+        'where': {
+            'id': [2, 3, 4]
+        }
     }
 })
 
@@ -52,5 +51,12 @@ var users = yield User.findAll({
       name: 'asas'
     }
 })
+
+```
+#### 自增
+
+```javascript
+
+Model.increment('number', { where: { foo: 'bar' }) 
 
 ```

@@ -6,7 +6,8 @@ const {
   AIM_DETAIL_GET_DETAIL, AIM_DETAIL_GET_DETAIL_SUCCEED, AIM_DETAIL_GET_DETAIL_FAILED,
   AIM_DETAIL_FIELDS_CHANGE, AIM_DETAIL_POST_DETAIL_INFO, AIM_DETAIL_POST_DETAIL_INFO_SUCCEED,
   AIM_DETAIL_POST_DETAIL_INFO_FAILED, AIM_DETAIL_GET_AIM_CHANGE_LISTS, AIM_DETAIL_GET_AIM_CHANGE_LISTS_SUCCEED,
-  AIM_DETAIL_GET_AIM_CHANGE_LISTS_FAILED
+  AIM_DETAIL_GET_AIM_CHANGE_LISTS_FAILED, AIM_DETAIL_POST_ADD_COMMENT, AIM_DETAIL_POST_ADD_COMMENT_SUCCEED, AIM_DETAIL_POST_ADD_COMMENT_FAILED,
+  AIM_DETAIL_GET_AIM_COMMENTS, AIM_DETAIL_GET_AIM_COMMENTS_SUCCEED, AIM_DETAIL_GET_AIM_COMMENTS_FAILED, AIM_DETAIL_TOGGLE_COMMENT_STATE
 } = types
 const initstate = {
   loading: false,
@@ -15,10 +16,18 @@ const initstate = {
   aimDetailInfo: {},
   createUser: {},
   updateContent: {},
+  addContent: {},
   aimStatus: {},
   updateLoading: false,
+  addCommentLoading: false,
   // upd 列表
-  aimDetailChangeList: []
+  aimDetailChangeList: [],
+  // 评论列表
+  getCommentLoading: false,
+  aimCommentList: [],
+  pagination: {},
+  // 评论是否展开
+  commentToggleState: {}
 }
 
 export default createReducer(initstate, {
@@ -70,5 +79,40 @@ export default createReducer(initstate, {
   },
   [AIM_DETAIL_GET_AIM_CHANGE_LISTS_FAILED]: (state, action) => {
     return { ...state, loading: false }
+  },
+  // 添加评论信息
+  [AIM_DETAIL_POST_ADD_COMMENT]: (state, action) => {
+    return { ...state, addCommentLoading: true }
+  },
+  [AIM_DETAIL_POST_ADD_COMMENT_SUCCEED]: (state, action) => {
+    message.success('添加评论成功')
+    if (action.cb) {
+      action.cb()
+      return state
+    }
+    return { ...state, addCommentLoading: false, addContent: {} }
+  },
+  [AIM_DETAIL_POST_ADD_COMMENT_FAILED]: (state, action) => {
+    if (action.cb) {
+      action.cb()
+      return state
+    }
+    return { ...state, addCommentLoading: false }
+  },
+  // 获取评论信息
+  [AIM_DETAIL_GET_AIM_COMMENTS]: (state, action) => {
+    return { ...state, getCommentLoading: true }
+  },
+  [AIM_DETAIL_GET_AIM_COMMENTS_SUCCEED]: (state, action) => {
+    const { aimCommentList, pagination } = action
+    return { ...state, aimCommentList, pagination, getCommentLoading: false }
+  },
+  [AIM_DETAIL_GET_AIM_COMMENTS_FAILED]: (state, action) => {
+    return { ...state, getCommentLoading: false }
+  },
+  // 切换 comment 展开
+  [AIM_DETAIL_TOGGLE_COMMENT_STATE]: (state, action) => {
+    const { commentId, toggleState } = action
+    return { ...state, commentToggleState: { ...state.commentToggleState, [commentId]: toggleState } }
   }
 })

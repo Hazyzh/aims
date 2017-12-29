@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import DetailHome from '../components/DetailHome.js'
 import { bindActionCreators } from 'redux'
-import { changeAimID, getAimsChangeList } from '@/actions/aimDetail_action.js'
+import { changeAimID, getAimsChangeList, getAimsComments } from '@/actions/aimDetail_action.js'
 
 const mapStateToProps = ({addAims}) => ({
   loading: addAims.loading
@@ -9,7 +9,8 @@ const mapStateToProps = ({addAims}) => ({
 
 const mapDispatchToProps = dispatch => ({
   getDetailInfo: bindActionCreators(changeAimID, dispatch),
-  getAimsChangeList: bindActionCreators(getAimsChangeList, dispatch)
+  getAimsChangeList: bindActionCreators(getAimsChangeList, dispatch),
+  getAimsComments: bindActionCreators(getAimsComments, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailHome)

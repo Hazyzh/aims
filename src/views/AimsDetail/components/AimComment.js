@@ -6,15 +6,19 @@ const { TextArea } = Input
 
 class AimComment extends Component {
   clickHandler = () => {
-    // const { updateAimInfo, aimDetailInfo } = this.props
+    const { addAimComment, aimDetailInfo } = this.props
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values)
+        values.pid = 0
+        values.aimId = aimDetailInfo.id
+        addAimComment(values)
       }
     })
   }
   render() {
     const { getFieldDecorator } = this.props.form
+    const { loading } = this.props
     return (
       <div className='aim-detail-comment-box'>
         <div className='aim-detail-comment'>
@@ -25,7 +29,7 @@ class AimComment extends Component {
             <Col>
               <FormItem>
                 {
-                  getFieldDecorator('addComment', {
+                  getFieldDecorator('addContent', {
                     rules: [{required: true, message: '必须输入信息'}]
                   })(
                     <TextArea
@@ -38,6 +42,7 @@ class AimComment extends Component {
             <Col style={{textAlign: 'right'}}>
               <Button
                 type='primary'
+                loading={loading}
                 onClick={this.clickHandler}
                 size='large' >
                 发表评论
@@ -52,7 +57,21 @@ class AimComment extends Component {
 
 AimComment.propTypes = {
   aimDetailInfo: PropTypes.object.isRequired,
-  userInfo: PropTypes.object.isRequired
+  userInfo: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
+  addContent: PropTypes.object.isRequired,
+  // func
+  addAimComment: PropTypes.func.isRequired,
+  onFieldsChanged: PropTypes.func.isRequired
 }
 
-export default Form.create()(AimComment)
+export default Form.create({
+  onFieldsChange(props, changedFields) {
+    props.onFieldsChanged(changedFields)
+  },
+  mapPropsToFields(props) {
+    return {
+      addContent: Form.createFormField(props.addContent)
+    }
+  }
+})(AimComment)

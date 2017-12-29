@@ -3,10 +3,12 @@ import PropTypes from 'prop-types'
 import { Row, Col, Avatar, Divider } from 'antd'
 import moment from 'moment'
 // 获取发布时间
-const getTimeInfo = time => {
+export const getTimeInfo = time => {
   const begin = moment(time)
   const now = moment()
   let resText
+  const years = now.diff(begin, 'months')
+  if (years > 0) return moment(time).format('YYYY年MM月DD日')
   const duration = now.diff(begin, 'days')
   if (duration > 0) {
     resText = duration + '天'
@@ -20,7 +22,7 @@ const getTimeInfo = time => {
       resText = minutes ? minutes + '分钟' : '1分种'
     }
   }
-  return resText
+  return resText + '前'
 }
 
 const DetailTitle = ({aimDetailInfo, createUser}) =>
@@ -31,7 +33,7 @@ const DetailTitle = ({aimDetailInfo, createUser}) =>
         <div>
           <span className='username'><a>{createUser.user_name}</a></span>
           <span className='aim-info'>
-            <span>{getTimeInfo(aimDetailInfo.createdAt)}前</span>
+            <span>{getTimeInfo(aimDetailInfo.createdAt)}</span>
             <Divider type='vertical' />
             <span>{aimDetailInfo.read_counts}次点击</span>
           </span>
