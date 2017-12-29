@@ -11,6 +11,7 @@ var aims = sequelize.define('aims-aim', {
   user_id: Sequelize.STRING(32),
   aim_title: Sequelize.STRING(64),
   aim_content: Sequelize.STRING(255),
+  read_counts: Sequelize.INTEGER,
   aim_deadline: Sequelize.DATE,
   aim_status: Sequelize.INTEGER
 }, {

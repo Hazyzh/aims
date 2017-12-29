@@ -1,4 +1,4 @@
-const updateLists = require('../../../../model/updateLists.js')
+const { aims, updateLists } = require('../../../../model/index.js')
 // 获取
 const fn_get = async (ctx, next) => {
   const { aimId } = ctx.query
@@ -27,7 +27,14 @@ const fn_post = async (ctx, next) => {
       update_content: updateContent,
       aim_status: aimStatus
     })
-
+    // 如果不是 0 就修改 aim 的状态
+    if (aimStatus !== '0') {
+      await aims.update({
+        aim_status: aimStatus
+      }, {
+        where: { id: aimId }
+      })
+    }
     ctx.rest(updateLog.id, '添加目标成功')
   } catch (err) {
     console.log('err', err)

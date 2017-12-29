@@ -19,7 +19,7 @@ class CommentInput extends Component {
             content: (<div>修改完成后不能再修改状态。</div>),
             cancelText: '取消',
             okText: '确认',
-            onOk: () => updateAimInfo(values),
+            onOk: () => { updateAimInfo(values); ref.destroy() },
             onCancel: () => { ref.destroy() }
           })
           return false

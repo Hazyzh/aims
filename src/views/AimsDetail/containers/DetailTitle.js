@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 // import { bindActionCreators } from 'redux'
 
 const mapStateToProps = ({aimDetail}) => ({
-  aimDetailInfo: aimDetail.aimDetailInfo
+  aimDetailInfo: aimDetail.aimDetailInfo,
+  createUser: aimDetail.createUser
 })
 
 const mapDispatchToProps = dispatch => ({

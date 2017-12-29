@@ -11,7 +11,7 @@ const AimsDetail = ({ loading, aimDetailInfo }) =>
     spinning={loading}
     tip='加载详细信息中...' >
     <DetailTitle />
-    <Divider />
+    <Divider className='aim-detail-divider' />
     <p className='aims-deatil-content'>{aimDetailInfo.aim_content}</p>
     <Timeline />
     <AimSteps />

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Layout } from 'antd'
+import { Link } from 'react-router-dom'
 import './index.less'
 
 const { Header, Footer, Content } = Layout
@@ -8,7 +9,7 @@ const { Header, Footer, Content } = Layout
 const App = ({children}) =>
   <div>
     <Layout>
-      <Header>Header</Header>
+      <Header><Link to='/'>Header</Link></Header>
       <Content>
         <div className='App-content-box'>
           {children}

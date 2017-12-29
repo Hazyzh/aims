@@ -13,6 +13,7 @@ const initstate = {
   aimId: '',
   // aim 详情
   aimDetailInfo: {},
+  createUser: {},
   updateContent: {},
   aimStatus: {},
   updateLoading: false,
@@ -27,7 +28,7 @@ export default createReducer(initstate, {
   },
   [AIM_DETAIL_GET_DETAIL_SUCCEED]: (state, action) => {
     const { aimDetailInfo } = action
-    return { ...state, loading: false, aimDetailInfo }
+    return { ...state, loading: false, aimDetailInfo, createUser: aimDetailInfo.aimUser }
   },
   [AIM_DETAIL_GET_DETAIL_FAILED]: (state, action) => {
     return { ...state, loading: false }
@@ -43,7 +44,7 @@ export default createReducer(initstate, {
   },
   [AIM_DETAIL_POST_DETAIL_INFO_SUCCEED]: (state, action) => {
     message.success('更新成功')
-    return { ...state, updateLoading: false, updateContent: {} }
+    return { ...state, updateLoading: false, updateContent: {}, aimStatus: {} }
   },
   [AIM_DETAIL_POST_DETAIL_INFO_FAILED]: (state, action) => {
     return { ...state, updateLoading: false }
