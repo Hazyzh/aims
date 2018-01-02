@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Row, Col, Avatar, Divider } from 'antd'
+import { Row, Col, Avatar, Divider, Icon, Button } from 'antd'
 import moment from 'moment'
 // 获取发布时间
 export const getTimeInfo = time => {
@@ -25,7 +25,7 @@ export const getTimeInfo = time => {
   return resText + '前'
 }
 
-const DetailTitle = ({aimDetailInfo, createUser}) =>
+const DetailTitle = ({aimDetailInfo, createUser, isPraise, isWatching, praiseOrAttentionHandler}) =>
   <div className='aim-detail-title'>
     <Row>
       <Col span={16}>
@@ -40,6 +40,23 @@ const DetailTitle = ({aimDetailInfo, createUser}) =>
         </div>
       </Col>
       <Col span={8} className='head-img'>
+        <div className='btn-box'>
+          <Button
+            size='small'
+            type='primary'
+            onClick={() => praiseOrAttentionHandler(1)}>
+            <span>赞</span>
+            <Divider type='vertical' />
+            {isPraise ? <Icon type='like' /> : <Icon type='like-o' />}
+          </Button>
+          <Button
+            size='small'
+            onClick={() => praiseOrAttentionHandler(2)}>
+            <span>关注</span>
+            <Divider type='vertical' />
+            {isWatching ? <Icon type='eye' /> : <Icon type='eye-o' />}
+          </Button>
+        </div>
         <Avatar
           className='item'
           size='large'
@@ -51,7 +68,10 @@ const DetailTitle = ({aimDetailInfo, createUser}) =>
 
 DetailTitle.propTypes = {
   aimDetailInfo: PropTypes.object.isRequired,
-  createUser: PropTypes.object.isRequired
+  createUser: PropTypes.object.isRequired,
+  isPraise: PropTypes.bool.isRequired,
+  isWatching: PropTypes.bool.isRequired,
+  praiseOrAttentionHandler: PropTypes.func.isRequired
 }
 
 export default DetailTitle

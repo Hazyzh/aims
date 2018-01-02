@@ -7,7 +7,8 @@ const {
   AIM_DETAIL_FIELDS_CHANGE, AIM_DETAIL_POST_DETAIL_INFO, AIM_DETAIL_POST_DETAIL_INFO_SUCCEED,
   AIM_DETAIL_POST_DETAIL_INFO_FAILED, AIM_DETAIL_GET_AIM_CHANGE_LISTS, AIM_DETAIL_GET_AIM_CHANGE_LISTS_SUCCEED,
   AIM_DETAIL_GET_AIM_CHANGE_LISTS_FAILED, AIM_DETAIL_POST_ADD_COMMENT, AIM_DETAIL_POST_ADD_COMMENT_SUCCEED, AIM_DETAIL_POST_ADD_COMMENT_FAILED,
-  AIM_DETAIL_GET_AIM_COMMENTS, AIM_DETAIL_GET_AIM_COMMENTS_SUCCEED, AIM_DETAIL_GET_AIM_COMMENTS_FAILED, AIM_DETAIL_TOGGLE_COMMENT_STATE
+  AIM_DETAIL_GET_AIM_COMMENTS, AIM_DETAIL_GET_AIM_COMMENTS_SUCCEED, AIM_DETAIL_GET_AIM_COMMENTS_FAILED, AIM_DETAIL_TOGGLE_COMMENT_STATE,
+  AIM_DETAIL_GET_PRAISE_AND_ATTENTION_SUCCEED, AIM_DETAIL_PUT_PRAISE_AND_ATTENTION_SUCCEED
 } = types
 const initstate = {
   loading: false,
@@ -27,7 +28,9 @@ const initstate = {
   aimCommentList: [],
   pagination: {},
   // 评论是否展开
-  commentToggleState: {}
+  commentToggleState: {},
+  isPraise: false,
+  isWatching: false
 }
 
 export default createReducer(initstate, {
@@ -110,9 +113,19 @@ export default createReducer(initstate, {
   [AIM_DETAIL_GET_AIM_COMMENTS_FAILED]: (state, action) => {
     return { ...state, getCommentLoading: false }
   },
+  // 获取点赞关注信息
+  [AIM_DETAIL_GET_PRAISE_AND_ATTENTION_SUCCEED]: (state, action) => {
+    const { isPraise, isWatching } = action
+    return { ...state, isPraise, isWatching }
+  },
   // 切换 comment 展开
   [AIM_DETAIL_TOGGLE_COMMENT_STATE]: (state, action) => {
     const { commentId, toggleState } = action
     return { ...state, commentToggleState: { ...state.commentToggleState, [commentId]: toggleState } }
+  },
+  // 修改点赞问题
+  [AIM_DETAIL_PUT_PRAISE_AND_ATTENTION_SUCCEED]: (state, action) => {
+    const { status, type } = action.payload
+    return { ...state, [type === 1 ? 'isPraise' : 'isWatching']: status === 1 }
   }
 })

@@ -12,6 +12,8 @@ class DetailHome extends Component {
     this.props.getAimsChangeList(params)
     // 获取评论信息
     this.props.getAimsComments(params)
+    // 获取关注赞赏信息
+    this.props.getPraiseAndAttention(params)
   }
   render() {
     return (
@@ -23,7 +25,8 @@ class DetailHome extends Component {
 DetailHome.propTypes = {
   getDetailInfo: PropTypes.func.isRequired,
   getAimsChangeList: PropTypes.func.isRequired,
-  getAimsComments: PropTypes.func.isRequired
+  getAimsComments: PropTypes.func.isRequired,
+  getPraiseAndAttention: PropTypes.func.isRequired
 }
 
 export default DetailHome
