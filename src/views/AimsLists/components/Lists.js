@@ -46,7 +46,7 @@ const renderHandler = item => {
   return (
     <List.Item
       key={item.title}
-      actions={[<IconText type='star-o' text='156' />, <IconText type='like-o' text='156' />, <IconText type='message' text='2' />]}
+      actions={[<IconText type='star-o' text={item.watch_counts} />, <IconText type='like-o' text={item.praise_counts} />, <IconText type='message' text={item.inner_counts} />]}
       extra={
         <Card
           hoverable
