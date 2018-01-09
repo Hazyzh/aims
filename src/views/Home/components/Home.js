@@ -8,7 +8,6 @@ import HomeLists from '../../HomeLists'
 import AddAims from '../../AddAims'
 
 const Home = withRouter((props) => {
-  console.log(props)
   return (
     <div>
       <Breadcrumb className='home-tabbar'>

@@ -1,60 +1,98 @@
 import React from 'react'
-import { Route, Switch, Link, withRouter } from 'react-router-dom'
-import { Breadcrumb, Alert } from 'antd'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from 'react-router-dom'
 
-const Apps = () => (
-  <ul className='app-list'>
-    <li>
-      <Link to='/apps/1'>Application1</Link>：<Link to='/apps/1/detail'>Detail</Link>
-    </li>
-    <li>
-      <Link to='/apps/2'>Application2</Link>：<Link to='/apps/2/detail'>Detail</Link>
-    </li>
-  </ul>
+// 1. Click the public page
+// 2. Click the protected page
+// 3. Log in
+// 4. Click the back button, note the URL each time
+
+const AuthExample = () => (
+  <Router>
+    <div>
+      <AuthButton />
+      <ul>
+        <li><Link to='/public'>Public Page</Link></li>
+        <li><Link to='/protected'>Protected Page</Link></li>
+      </ul>
+      <Route path='/public' component={Public} />
+      <Route path='/login' component={Login} />
+      <PrivateRoute path='/protected' component={Protected} />
+    </div>
+  </Router>
 )
 
-const breadcrumbNameMap = {
-  '/apps': 'Application List',
-  '/apps/1': 'Application1',
-  '/apps/2': 'Application2',
-  '/apps/1/detail': 'Detail',
-  '/apps/2/detail': 'Detail'
+const fakeAuth = {
+  isAuthenticated: false,
+  authenticate(cb) {
+    this.isAuthenticated = true
+    setTimeout(cb, 100) // fake async
+  },
+  signout(cb) {
+    this.isAuthenticated = false
+    setTimeout(cb, 100)
+  }
 }
-const Home = withRouter((props) => {
-  const { location } = props
-  const pathSnippets = location.pathname.split('/').filter(i => i)
-  console.log(props, pathSnippets)
-  const extraBreadcrumbItems = pathSnippets.map((_, index) => {
-    const url = `/${pathSnippets.slice(0, index + 1).join('/')}`
-    return (
-      <Breadcrumb.Item key={url}>
-        <Link to={url}>
-          {breadcrumbNameMap[url]}
-        </Link>
-      </Breadcrumb.Item>
-    )
-  })
-  const breadcrumbItems = [(
-    <Breadcrumb.Item key='home'>
-      <Link to='/'>Home</Link>
-    </Breadcrumb.Item>
-  )].concat(extraBreadcrumbItems)
-  return (
-    <div className='demo'>
-      <div className='demo-nav'>
-        <Link to='/'>Home</Link>
-        <Link to='/apps'>Application List</Link>
-      </div>
-      <Switch>
-        <Route path='/apps' component={Apps} />
-        <Route render={() => <span>Home Page</span>} />
-      </Switch>
-      <Alert style={{ margin: '16px 0' }} message='Click the navigation above to switch:' />
-      <Breadcrumb>
-        {breadcrumbItems}
-      </Breadcrumb>
-    </div>
-  )
-})
 
-export default Home
+const AuthButton = withRouter(({ history }) => (
+  fakeAuth.isAuthenticated ? (
+    <p>
+      Welcome! <button onClick={() => {
+        fakeAuth.signout(() => history.push('/'))
+      }}>Sign out</button>
+    </p>
+  ) : (
+    <p>You are not logged in.</p>
+  )
+))
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={props => (
+    fakeAuth.isAuthenticated ? (
+      <Component {...props} />
+    ) : (
+      <Redirect to={{
+        pathname: '/login',
+        state: { from: props.location }
+      }} />
+    )
+  )} />
+)
+
+const Public = () => <h3>Public</h3>
+const Protected = () => <h3>Protected</h3>
+
+class Login extends React.Component {
+  state = {
+    redirectToReferrer: false
+  }
+
+  login = () => {
+    fakeAuth.authenticate(() => {
+      this.setState({ redirectToReferrer: true })
+    })
+  }
+
+  render() {
+    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    const { redirectToReferrer } = this.state
+    if (redirectToReferrer) {
+      return (
+        <Redirect to={from} />
+      )
+    }
+    return (
+      <div>
+        <p>You must log in to view the page at {from.pathname}</p>
+        <button onClick={this.login}>Log in</button>
+      </div>
+    )
+  }
+}
+
+export default AuthExample

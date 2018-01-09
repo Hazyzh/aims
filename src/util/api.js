@@ -35,7 +35,10 @@ Api.interceptors.response.use(
       switch (error.response.status) {
         case 401:
           console.log(2)
-          break
+          const message = error.response.data
+          const code = 401
+          const params = { message, code }
+          return Promise.reject(params)
       }
     }
     return Promise.reject(error.response.data)
