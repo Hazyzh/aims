@@ -16,8 +16,6 @@ import {
   Route,
   Redirect
 } from 'react-router-dom'
-// 鉴权路由
-import PrivateRoute from './PrivateRoute.js'
 
 class Routers extends Component {
   componentWillMount() {
@@ -31,8 +29,8 @@ class Routers extends Component {
         <div>
           <App>
             <Route exact path='/' render={() => <Redirect to='/home/share' />} />
-            <PrivateRoute path='/home' component={Home} />
-            <PrivateRoute path='/aimsDetail/:aimId' component={AimsDetail} />
+            <Route path='/home' component={Home} />
+            <Route path='/aimsDetail/:aimId' component={AimsDetail} />
             <Route path='/login' component={Login} />
             <Route path='/test' component={Test} />
           </App>

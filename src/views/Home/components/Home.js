@@ -7,6 +7,8 @@ import HomeLists from '../../HomeLists'
 // 新增 aims
 import AddAims from '../../AddAims'
 
+import PrivateRoute from '@/router/PrivateRoute.js'
+
 const Home = withRouter((props) => {
   return (
     <div>
@@ -34,8 +36,8 @@ const Home = withRouter((props) => {
         exact
         path='/home/share'
         component={HomeLists} />
-      <Route path='/home/my' component={AimsLists} />
-      <Route path='/home/addAims' component={AddAims} />
+      <PrivateRoute path='/home/my' component={AimsLists} />
+      <PrivateRoute path='/home/addAims' component={AddAims} />
     </div>
   )
 })
