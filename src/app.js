@@ -14,14 +14,23 @@ moment.locale('zh-cn')
 const store = configureStore()
 
 const render = Component => {
-  ReactDOM.render(
-    <AppContainer>
+  if (process.env === 'production') {
+    ReactDOM.render(
       <Provider store={store} >
         <Component />
-      </Provider>
-    </AppContainer>,
-    document.getElementById('app')
-  )
+      </Provider>,
+      document.getElementById('app')
+    )
+  } else {
+    ReactDOM.render(
+      <AppContainer>
+        <Provider store={store} >
+          <Component />
+        </Provider>
+      </AppContainer>,
+      document.getElementById('app')
+    )
+  }
 }
 
 render(App)

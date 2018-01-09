@@ -43,7 +43,8 @@ exports.cssLoaders = function (options) {
     // (which is the case during production build)
     if (options.extract) {
       return ExtractTextPlugin.extract({
-        use: loaders
+        fallback: 'style-loader',
+        use: loaders.slice(1)
       })
     } else {
       return loaders
@@ -67,6 +68,5 @@ exports.styleLoaders = function (options) {
       use: loader
     })
   }
-  console.log(output)
   return output
 }

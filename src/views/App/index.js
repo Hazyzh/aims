@@ -1,15 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Layout } from 'antd'
-import { Link } from 'react-router-dom'
 import './index.less'
+import HeaderComponent from './containers/HeaderComponent.js'
 
 const { Header, Footer, Content } = Layout
 
 const App = ({children}) =>
   <div>
     <Layout>
-      <Header style={{textAlign: 'center'}}><Link to='/'>Header</Link></Header>
+      <Header className='header'>
+        <HeaderComponent />
+      </Header>
       <Content>
         <div className='App-content-box'>
           {children}

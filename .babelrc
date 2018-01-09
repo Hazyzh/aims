@@ -14,6 +14,20 @@
         ["import", { "libraryName": "antd", "style": true }],
         "react-hot-loader/babel"
       ]
-		}
+		},
+    "production": {
+      "presets": [
+        ["env", {
+          "targets": {
+            "browsers": ["last 2 versions", "ie > 7"]
+          }
+        }],
+        "react",
+        "stage-2"
+      ],
+      "plugins": [
+        "transform-runtime",
+      ]
+    }
 	}
 }

@@ -8,11 +8,11 @@ export function* OAuth(action) {
   }
 }
 
-function* testSaga () {
+function* oauthSaga () {
   while (true) {
     const action = yield take('*')
     yield OAuth(action)
   }
 }
 
-export default testSaga
+export default oauthSaga
