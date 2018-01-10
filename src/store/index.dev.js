@@ -15,10 +15,7 @@ const logger = createLogger({
 export default function configureStore() {
   const store = createStore(
     rootReducer,
-    applyMiddleware(
-      logger,
-      sagaMiddleware
-    )
+    applyMiddleware(logger, sagaMiddleware)
   )
   sagaMiddleware.run(rootSaga)
   // 目前 redux 热加载无效 强制刷新

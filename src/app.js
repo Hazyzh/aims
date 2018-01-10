@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
-import configureStore from './store'
 
 import App from './router'
 import './common.less'
@@ -10,11 +9,15 @@ import './common.less'
 import moment from 'moment'
 import 'moment/locale/zh-cn'
 moment.locale('zh-cn')
-
+let configureStore
+if (process.env.NODE_ENV === 'production') {
+  configureStore = require('./store/index.pro.js').default
+} else {
+  configureStore = require('./store/index.dev.js').default
+}
 const store = configureStore()
-
 const render = Component => {
-  if (process.env === 'production') {
+  if (process.env.NODE_ENV === 'production') {
     ReactDOM.render(
       <Provider store={store} >
         <Component />
