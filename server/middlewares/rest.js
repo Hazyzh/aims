@@ -6,11 +6,12 @@ const getData = require('../util/jwt.js').getData
  * @param  {string} message 返回的消息
  * @return {object}         固定属性的返回值
  */
-const restifySucceed = (content, message) => ({
-  code: 0,
-  content,
-  message
-})
+const restifySucceed = (content, message, ...rest) => Object.assign(
+  {
+    code: 0,
+    content,
+    message
+  }, ...rest)
 
 /**
  * restify api 失败时候获取返回值的函数
@@ -18,10 +19,11 @@ const restifySucceed = (content, message) => ({
  * @param  {string} message 返回的消息
  * @return {object}         固定属性的返回值
  */
-const restifyError = (code, message) => ({
-  code,
-  message
-})
+const restifyError = (code, message, ...rest) => Object.assign(
+  {
+    code,
+    message
+  }, ...rest)
 
 module.exports = {
   restify: (pathPrefix) => {

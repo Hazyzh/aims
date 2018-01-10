@@ -57,3 +57,16 @@ export const getTimeInfo = aim => {
     isOver
   }
 }
+/**
+ * 获取url参数
+ * @param  {string} name 参数名称
+ * @return {string|null}      参数值 没有则返会 {null}
+ */
+export const getQueryString = (name) => {
+  var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i')
+  var r = window.location.search.substr(1).match(reg)
+  if (r != null) {
+    return unescape(r[2])
+  }
+  return null
+}

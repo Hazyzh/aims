@@ -9,12 +9,17 @@ import Login from '../views/Login'
 import Home from '../views/Home'
 // 详情页
 import AimsDetail from '../views/AimsDetail'
+// 404
+import NoMatch from '../views/NoMatch'
 // test router
-import Test from './Test.js'
+// import Test from './Test.js'
+// oauth
+import Oauth from '../views/Oauth'
 import {
   BrowserRouter as Router,
   Route,
-  Redirect
+  Redirect,
+  Switch
 } from 'react-router-dom'
 
 class Routers extends Component {
@@ -28,11 +33,14 @@ class Routers extends Component {
       <Router>
         <div>
           <App>
-            <Route exact path='/' render={() => <Redirect to='/home/share' />} />
-            <Route path='/home' component={Home} />
-            <Route path='/aimsDetail/:aimId' component={AimsDetail} />
-            <Route path='/login' component={Login} />
-            <Route path='/test' component={Test} />
+            <Switch>
+              <Route exact path='/' render={() => <Redirect to='/home/share' />} />
+              <Route path='/home' component={Home} />
+              <Route path='/aimsDetail/:aimId' component={AimsDetail} />
+              <Route path='/login' component={Login} />
+              <Route path='/sinaOuath' component={Oauth} />
+              <Route component={NoMatch} />
+            </Switch>
           </App>
         </div>
       </Router>

@@ -25,8 +25,8 @@ app
   .use(bodyParser())
   .use(configBody())
   .use(rests.restify())
+  .use(routers())
   .use(historyFallback())
   .use(serve(staticPath))
-  .use(routers())
 
 app.listen(3000)

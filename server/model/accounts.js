@@ -7,6 +7,7 @@ var user = sequelize.define('aims-account', {
     type: Sequelize.STRING(36),
     primaryKey: true
   },
+  sina_id: Sequelize.STRING(20),
   wx_openid: Sequelize.STRING(32),
   user_name: Sequelize.STRING(64),
   phone_number: Sequelize.STRING(13),

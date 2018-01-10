@@ -34,6 +34,10 @@ module.exports = {
       '/api/v1': {
         changeOrigin: true,
         target: 'http://localhost:3000/'
+      },
+      '/sina/oauth': {
+        changeOrigin: true,
+        target: 'http://localhost:3000/'
       }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

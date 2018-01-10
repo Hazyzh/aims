@@ -12,7 +12,7 @@ const fn_get = async (ctx, next) => {
     const watching = await watchings.findOne({
       'where': params
     })
-    const res = { isPraise: praise && praise.status === true, isWatching: !!watching && watching.status === true }
+    const res = { isPraise: !!praise && praise.status === true, isWatching: !!watching && watching.status === true }
     ctx.rest(res, '获取信息成功')
   } catch (err) {
     console.log('err', err)
