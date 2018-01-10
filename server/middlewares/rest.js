@@ -41,7 +41,7 @@ module.exports = {
       if (ctx.request.path.startsWith(pathPrefix)) {
         const { token = '' } = ctx.request.header
         const userInfo = getData(token)
-        if (!userInfo) return ctx.throw(401)
+        if (!userInfo) return ctx.restError(401, '用户信息认证失败')
         ctx.userInfo = userInfo
         await next()
       } else {

@@ -20,7 +20,7 @@ app.use(async (ctx, next) => {
 })
 
 const staticPath = path.resolve(__dirname, '../dist')
-console.log(staticPath)
+
 app
   .use(bodyParser())
   .use(configBody())

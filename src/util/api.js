@@ -26,21 +26,15 @@ Api.interceptors.response.use(
     if (response.data.code === 0) {
       return response.data
     } else {
-      message.error(response.data.message)
+      if (response.data.code === 401) {
+        console.log('un aouth')
+      } else {
+        message.error(response.data.message)
+      }
       return Promise.reject(response.data)
     }
   },
   error => {
-    if (error.response) {
-      switch (error.response.status) {
-        case 401:
-          console.log(2)
-          const message = error.response.data
-          const code = 401
-          const params = { message, code }
-          return Promise.reject(params)
-      }
-    }
     return Promise.reject(error.response.data)
   }
 )
