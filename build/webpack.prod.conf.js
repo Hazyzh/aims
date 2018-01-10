@@ -72,7 +72,9 @@ const webpackConfig = merge(baseWebpackConfig, {
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-      chunksSortMode: 'dependency'
+      chunksSortMode: 'dependency',
+      // add favicon
+      favicon: path.join(__dirname, './favicon.ico')
     }),
     // keep module.id stable when vender modules does not change
     new webpack.HashedModuleIdsPlugin(),
@@ -96,6 +98,8 @@ const webpackConfig = merge(baseWebpackConfig, {
       name: 'manifest',
       chunks: ['vendor']
     }),
+    // Copyright
+    new webpack.BannerPlugin("Copyright Hazyzh All rights reserved.")
     // // copy custom static assets
     // new CopyWebpackPlugin([
     //   {
