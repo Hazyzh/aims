@@ -1,11 +1,13 @@
 import React from 'react'
 import { Breadcrumb, Icon } from 'antd'
-import { NavLink, withRouter, Route } from 'react-router-dom'
+import { NavLink, withRouter, Route, Switch } from 'react-router-dom'
 // aims 列表
 import AimsLists from '../../AimsLists'
 import HomeLists from '../../HomeLists'
 // 新增 aims
 import AddAims from '../../AddAims'
+// 404
+import NoMatch from '../../NoMatch'
 
 import PrivateRoute from '@/router/PrivateRoute.js'
 
@@ -32,12 +34,15 @@ const Home = withRouter((props) => {
           </NavLink>
         </Breadcrumb.Item>
       </Breadcrumb>
-      <Route
-        exact
-        path='/home/share'
-        component={HomeLists} />
-      <PrivateRoute path='/home/my' component={AimsLists} />
-      <PrivateRoute path='/home/addAims' component={AddAims} />
+      <Switch>
+        <Route
+          exact
+          path='/home/share'
+          component={HomeLists} />
+        <PrivateRoute path='/home/my' component={AimsLists} />
+        <PrivateRoute path='/home/addAims' component={AddAims} />
+        <Route component={NoMatch} />
+      </Switch>
     </div>
   )
 })
