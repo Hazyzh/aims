@@ -61,7 +61,7 @@ const DetailTitle = ({aimDetailInfo, createUser, isPraise, isWatching, praiseOrA
           className='item'
           size='large'
           shape='square'
-          icon='user' />
+          src={createUser.avatar_url} />
       </Col>
     </Row>
   </div>

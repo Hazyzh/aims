@@ -23,7 +23,8 @@ const ComponentItem = ({info, clickHandler, stateMap}) =>
           title={info.commentUserDes}>
           <Avatar
             shape='square'
-            size='large' />
+            size='large'
+            src={info.aimUser.avatar_url} />
         </a>
       </Col>
       <Col span={6}>

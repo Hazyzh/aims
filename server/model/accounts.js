@@ -3,10 +3,12 @@ const sequelize = require('./root.js')
 
 // 用户表
 var user = sequelize.define('aims-account', {
-  id: {
-    type: Sequelize.STRING(36),
+  int_id: {
+    type: Sequelize.BIGINT(11),
+    autoIncrement: true,
     primaryKey: true
   },
+  id: Sequelize.STRING(36),
   sina_id: Sequelize.STRING(20),
   wx_openid: Sequelize.STRING(32),
   user_name: Sequelize.STRING(64),

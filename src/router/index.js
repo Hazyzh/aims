@@ -15,6 +15,8 @@ import NoMatch from '../views/NoMatch'
 // import Test from './Test.js'
 // oauth
 import Oauth from '../views/Oauth'
+// UserInfo
+import UserInfo from '../views/UserInfo'
 import {
   BrowserRouter as Router,
   Route,
@@ -39,6 +41,7 @@ class Routers extends Component {
               <Route path='/aimsDetail/:aimId' component={AimsDetail} />
               <Route path='/login' component={Login} />
               <Route path='/sinaOuath' component={Oauth} />
+              <Route path='/userInfo/:id' component={UserInfo} />
               <Route component={NoMatch} />
             </Switch>
           </App>

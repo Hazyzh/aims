@@ -4,6 +4,7 @@ import addAimsSaga from './addAims.js'
 import homeViewSaga from './homeView.js'
 import detailSaga from './aimDetail.js'
 import userSaga from './user.js'
+import userInfoSaga from './userInfo.js'
 
 export default function* rootSaga () {
   yield all([
@@ -11,6 +12,7 @@ export default function* rootSaga () {
     addAimsSaga(),
     homeViewSaga(),
     detailSaga(),
-    userSaga()
+    userSaga(),
+    userInfoSaga()
   ])
 }

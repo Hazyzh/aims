@@ -12,7 +12,7 @@ const HeaderComponent = ({login, userInfo}) =>
       </Link>
     </span>
     <span className='user-info'>
-      { login ? <Link to='/userInfo'>{userInfo.user_name}</Link> : <Link to='/login'>登入</Link> }
+      { login ? <Link to={`/userInfo/${userInfo.int_id}`}>{userInfo.user_name}</Link> : <Link to='/login'>登入</Link> }
     </span>
   </div>
 
