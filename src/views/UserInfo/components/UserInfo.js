@@ -6,11 +6,18 @@ import { Divider, Icon } from 'antd'
 
 class UserInfo extends Component {
   componentWillMount () {
-    this._fetchData()
+    const id = this.props.match.params.id
+    this._fetchData(id)
   }
 
-  _fetchData = () => {
-    const params = this.props.match.params
+  componentWillReceiveProps ({match}) {
+    const id = match.params.id
+    if (id !== this.props.match.params.id) {
+      this._fetchData(id)
+    }
+  }
+  _fetchData = (id) => {
+    const params = { id }
     const { getUserBaseInfoHandler } = this.props
     getUserBaseInfoHandler(params)
   }

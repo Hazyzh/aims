@@ -1,29 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Row, Col, Avatar, Divider, Icon, Button } from 'antd'
-import moment from 'moment'
-// 获取发布时间
-export const getTimeInfo = time => {
-  const begin = moment(time)
-  const now = moment()
-  let resText
-  const years = now.diff(begin, 'months')
-  if (years > 0) return moment(time).format('YYYY年MM月DD日')
-  const duration = now.diff(begin, 'days')
-  if (duration > 0) {
-    resText = duration + '天'
-  } else {
-    const d = moment.duration(now.diff(begin))
-    const hours = d.get('hours')
-    const minutes = d.get('minutes')
-    if (hours > 0) {
-      resText = hours + '小时' + minutes ? minutes + '分钟' : ''
-    } else {
-      resText = minutes ? minutes + '分钟' : '1分种'
-    }
-  }
-  return resText + '前'
-}
+import { getCountBeginTime } from '@/util'
 
 const DetailTitle = ({aimDetailInfo, createUser, isPraise, isWatching, praiseOrAttentionHandler}) =>
   <div className='aim-detail-title'>
@@ -33,7 +11,7 @@ const DetailTitle = ({aimDetailInfo, createUser, isPraise, isWatching, praiseOrA
         <div>
           <span className='username'><a>{createUser.user_name}</a></span>
           <span className='aim-info'>
-            <span>{getTimeInfo(aimDetailInfo.createdAt)}</span>
+            <span>{getCountBeginTime(aimDetailInfo.createdAt)}</span>
             <Divider type='vertical' />
             <span>{aimDetailInfo.read_counts}次点击</span>
           </span>

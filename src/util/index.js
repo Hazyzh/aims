@@ -70,3 +70,31 @@ export const getQueryString = (name) => {
   }
   return null
 }
+/**
+ * 获取发布距离现在的时间
+ *  如果间隔【分，小时，天】则返回对应 n 天／小时／分
+ *  如果间隔【月】 则返回日期
+ * @param  {string} time 时间
+ * @return {string}      距离现在的时间
+ */
+export const getCountBeginTime = (time) => {
+  const begin = moment(time)
+  const now = moment()
+  let resText
+  const years = now.diff(begin, 'months')
+  if (years > 0) return moment(time).format('YYYY年MM月DD日')
+  const duration = now.diff(begin, 'days')
+  if (duration > 0) {
+    resText = duration + '天'
+  } else {
+    const d = moment.duration(now.diff(begin))
+    const hours = d.get('hours')
+    const minutes = d.get('minutes')
+    if (hours > 0) {
+      resText = hours + '小时' + minutes ? minutes + '分钟' : ''
+    } else {
+      resText = minutes ? minutes + '分钟' : '1分种'
+    }
+  }
+  return resText + '前'
+}

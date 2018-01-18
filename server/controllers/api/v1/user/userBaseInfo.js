@@ -11,12 +11,17 @@ const fn_get = async (ctx, next) => {
       }
     })
     const [s, b] = [reqUserInfo.id, userInfo.id].sort()
-    const isFriend = await friends.findOne({
-      'where': {
-        s_uuid: s,
-        b_uuid: b
-      }
-    })
+    let isFriend
+    if (s === b) {
+      isFriend = false
+    } else {
+      isFriend = await friends.findOne({
+        'where': {
+          s_uuid: s,
+          b_uuid: b
+        }
+      })
+    }
     userInfo.dataValues.isFriend = !!isFriend
     ctx.rest(userInfo, '获取token信息成功')
   } catch (err) {

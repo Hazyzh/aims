@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Row, Col, Icon, Avatar } from 'antd'
-import { getTimeInfo } from './DetailTitle.js'
+import { getCountBeginTime } from '@/util'
 import InnerComment from '../containers/InnerComment.js'
 
 const ComponentItem = ({info, clickHandler, stateMap}) =>
@@ -31,7 +31,7 @@ const ComponentItem = ({info, clickHandler, stateMap}) =>
         <a href={info.commentUserUrl}>
           {info.aimUser.user_name}
         </a>
-        <p className='time'>{getTimeInfo(info.createdAt)}</p>
+        <p className='time'>{getCountBeginTime(info.createdAt)}</p>
       </Col>
     </Row>
     {

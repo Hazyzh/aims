@@ -3,14 +3,16 @@
 const aims = require('../../../../model/aims.js')
 
 const fn_get = async (ctx, next) => {
-  const { current = 1, pageSize = 5, aimsState = '-1' } = ctx.query
+  const { current = 1, pageSize = 5, aimsState = '-1', userId } = ctx.query
   const NpageSize = Number(pageSize)
   const Ncurrent = Number(current)
   try {
     const userInfo = ctx.userInfo
+    let id = userId
+    if (!id) { id = userInfo.id }
     // 根据参数设置查询字段
     let whereParams = {
-      'user_id': userInfo.id
+      'user_id': id
     }
     if (aimsState !== '-1') whereParams.aim_status = aimsState
     const lists = await aims.findAndCountAll({

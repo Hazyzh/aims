@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Row, Col, Input, Button, Form, Spin, message, Divider } from 'antd'
 import { get_aimCommentList } from '@/actions/aimDetail_action.js'
-import { getTimeInfo } from './DetailTitle.js'
+import { getCountBeginTime } from '@/util'
 
 const FormItem = Form.Item
 const { TextArea } = Input
@@ -13,7 +13,7 @@ const InnerItem = ({info}) =>
     <div className='box'>
       <span className='text'>{info.comment_content}</span>
       <span className='user'><a>{info.aimUser.user_name}</a></span>
-      <span className='time'>{getTimeInfo(info.createdAt)}</span>
+      <span className='time'>{getCountBeginTime(info.createdAt)}</span>
     </div>
     <Divider dashed className='inner-line' />
   </Col>

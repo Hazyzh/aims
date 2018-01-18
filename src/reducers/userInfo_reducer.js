@@ -4,7 +4,8 @@ import { message } from 'antd'
 
 const {
   USERINFO_GET_BASE_INFO, USERINFO_GET_BASE_INFO_SUCCEED, USERINFO_GET_BASE_INFO_FAILED,
-  USERINFO_POST_ADD_FRIEND, USERINFO_POST_ADD_FRIEND_SUCCEED, USERINFO_POST_ADD_FRIEND_FAILED
+  USERINFO_POST_ADD_FRIEND, USERINFO_POST_ADD_FRIEND_SUCCEED, USERINFO_POST_ADD_FRIEND_FAILED,
+  USERINFO_GET_AIMS_LISTS_SUCCEED, USERINFO_GET_AIMS_LISTS_FAILED
 } = types
 
 const initstate = {
@@ -12,7 +13,7 @@ const initstate = {
   userInfo: {},
   loading: false,
   addLoading: false,
-  aimLists: []
+  aimsLists: []
 }
 
 export default createReducer(initstate, {
@@ -37,5 +38,12 @@ export default createReducer(initstate, {
   },
   [USERINFO_POST_ADD_FRIEND_FAILED]: (state, action) => {
     return { ...state, addLoading: false }
+  },
+  [USERINFO_GET_AIMS_LISTS_SUCCEED]: (state, action) => {
+    const { aimsLists } = action
+    return { ...state, aimsLists }
+  },
+  [USERINFO_GET_AIMS_LISTS_FAILED]: (state, action) => {
+    return { ...state }
   }
 })
