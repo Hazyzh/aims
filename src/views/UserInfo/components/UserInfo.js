@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import HeaderComponent from '../containers/HeaderComponent.js'
 import AimsList from '../containers/AimsList.js'
+import UserDynamic from '../containers/UserDynamic.js'
 import { Divider, Icon } from 'antd'
 
 class UserInfo extends Component {
@@ -26,6 +27,10 @@ class UserInfo extends Component {
     return (
       <div>
         <HeaderComponent />
+        <Divider>
+          <span className='line-text'><Icon type='rocket' /> 最近动态</span>
+        </Divider>
+        <UserDynamic />
         <Divider>
           <span className='line-text'><Icon type='tags-o' /> 目标集</span>
         </Divider>

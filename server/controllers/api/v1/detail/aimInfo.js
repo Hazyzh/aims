@@ -25,7 +25,8 @@ const fn_post = async (ctx, next) => {
     const updateLog = await updateLists.create({
       aim_id: aimId,
       update_content: updateContent,
-      aim_status: aimStatus
+      aim_status: aimStatus,
+      user_id: userId
     })
     // 如果不是 0 就修改 aim 的状态
     if (aimStatus !== '0') {

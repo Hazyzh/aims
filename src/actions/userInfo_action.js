@@ -1,4 +1,4 @@
-import { fetchHanlder } from '@/util/api.js'
+import { fetchHanlder, normalHanlder } from '@/util/api.js'
 import types from '@/types'
 
 const { USERINFO_GET_BASE_INFO, USERINFO_POST_ADD_FRIEND } = types
@@ -13,6 +13,10 @@ export const addFriendHandler = (userId) => ({
   payload: { id: userId }
 })
 // 新增 aims 的请求
-export const get_userBaseInfoHandler = (params) => fetchHanlder('get', '/user/userBaseInfo', params)
+export const get_userBaseInfoHandler = (params) => normalHanlder('get', '/user/userBaseInfo', params)
 // 增加好友的请求
 export const post_addFriendsHandler = (params) => fetchHanlder('post', '/user/addFriend', params)
+// 获取最近动态
+export const get_latesetDynamic = (params) => normalHanlder('get', '/user/latesetDynamic', params)
+// 获取近期 aims 的请求
+export const get_normalAimsHander = (params) => normalHanlder('get', '/homeView/getlist', params)

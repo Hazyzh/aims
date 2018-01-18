@@ -8,6 +8,8 @@ const friends = require('./friends.js')
 
 aims.belongsTo(user, { foreignKey: 'user_id', as: 'aimUser', targetKey: 'id' })
 comments.belongsTo(user, { foreignKey: 'create_user', as: 'aimUser', targetKey: 'id' })
+// aims.hasMany(updateLists, { foreignKey: 'aim_id', as: 'aimInfo', targetKey: 'id' })
+updateLists.belongsTo(aims, { foreignKey: 'aim_id', as: 'aimInfo', targetKey: 'id' })
 
 module.exports = {
   user,

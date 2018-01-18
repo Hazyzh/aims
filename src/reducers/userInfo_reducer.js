@@ -5,7 +5,8 @@ import { message } from 'antd'
 const {
   USERINFO_GET_BASE_INFO, USERINFO_GET_BASE_INFO_SUCCEED, USERINFO_GET_BASE_INFO_FAILED,
   USERINFO_POST_ADD_FRIEND, USERINFO_POST_ADD_FRIEND_SUCCEED, USERINFO_POST_ADD_FRIEND_FAILED,
-  USERINFO_GET_AIMS_LISTS_SUCCEED, USERINFO_GET_AIMS_LISTS_FAILED
+  USERINFO_GET_AIMS_LISTS_SUCCEED, USERINFO_GET_AIMS_LISTS_FAILED, USERINFO_GET_LATESET_DYNAMIC_LISTS_SUCCEED,
+  USERINFO_GET_LATESET_DYNAMIC_LISTS_FAILED
 } = types
 
 const initstate = {
@@ -13,7 +14,8 @@ const initstate = {
   userInfo: {},
   loading: false,
   addLoading: false,
-  aimsLists: []
+  aimsLists: [],
+  dynamidLists: []
 }
 
 export default createReducer(initstate, {
@@ -45,5 +47,13 @@ export default createReducer(initstate, {
   },
   [USERINFO_GET_AIMS_LISTS_FAILED]: (state, action) => {
     return { ...state }
+  },
+  // 获取最近更新列表
+  [USERINFO_GET_LATESET_DYNAMIC_LISTS_SUCCEED]: (state, action) => {
+    const { dynamidLists } = action
+    return { ...state, dynamidLists }
+  },
+  [USERINFO_GET_LATESET_DYNAMIC_LISTS_FAILED]: (state, action) => {
+    return state
   }
 })

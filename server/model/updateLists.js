@@ -9,6 +9,7 @@ var updateLists = sequelize.define('aims-updateList', {
     primaryKey: true
   },
   aim_id: Sequelize.BIGINT(11),
+  user_id: Sequelize.STRING(36),
   update_content: Sequelize.STRING(255),
   aim_status: Sequelize.INTEGER
 }, {
