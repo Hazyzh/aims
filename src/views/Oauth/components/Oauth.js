@@ -17,9 +17,10 @@ class Oauth extends Component {
     this._OauthVerify()
   }
   _OauthVerify = () => {
+    const { history } = this.props
     const code = getQueryString('code')
     const url = getQueryString('state')
-    const { history } = this.props
+    if (!code) return history.push(url)
     axios.get(`/sina/oauth?code=${code}`).then(data => {
       const res = data.data
       if (res.code === 0) {
