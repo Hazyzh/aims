@@ -1,4 +1,3 @@
-// import React from 'react'
 import { Modal } from 'antd'
 import { store } from '../app.js'
 import history from './history.js'

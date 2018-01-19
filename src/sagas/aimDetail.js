@@ -107,9 +107,14 @@ export function* getPraiseAndAttention(action) {
   const { aimId } = action.payload
   const newParams = { aimId }
   try {
-    const data = yield call(get_praiseAddAttention, newParams)
-    const { isPraise, isWatching } = data.content
-    yield put({type: AIM_DETAIL_GET_PRAISE_AND_ATTENTION_SUCCEED, isPraise, isWatching})
+    const login = yield select(({user}) => user.login)
+    if (!login) {
+      yield put({type: AIM_DETAIL_GET_PRAISE_AND_ATTENTION_SUCCEED, isPraise: false, isWatching: false})
+    } else {
+      const data = yield call(get_praiseAddAttention, newParams)
+      const { isPraise, isWatching } = data.content
+      yield put({type: AIM_DETAIL_GET_PRAISE_AND_ATTENTION_SUCCEED, isPraise, isWatching})
+    }
   } catch (err) {
     yield put({type: AIM_DETAIL_GET_PRAISE_AND_ATTENTION_FAILED, error: err})
   }

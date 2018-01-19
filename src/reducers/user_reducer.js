@@ -8,7 +8,7 @@ const {
 
 const initstate = {
   userInfo: {},
-  login: true
+  login: false
 }
 
 export default createReducer(initstate, {

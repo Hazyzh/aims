@@ -1,4 +1,4 @@
-const { aims, user } = require('../../../../model/index.js')
+const { aims, user } = require('../../../model/index.js')
 
 const fn_get = async (ctx, next) => {
   const { aimId } = ctx.query

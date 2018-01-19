@@ -1,4 +1,4 @@
-import { fetchHanlder } from '@/util/api.js'
+import { fetchHanlder, normalHanlder } from '@/util/api.js'
 import types from '@/types'
 
 const {
@@ -64,11 +64,11 @@ export const post_aimInfo = params => fetchHanlder('post', '/detail/aimInfo', pa
 // 添加 aim 评论
 export const post_aimAddComment = params => fetchHanlder('post', '/comments/aimComment', params)
 // 获取 aim 详情的请求
-export const get_aimdetail = (params) => fetchHanlder('get', '/detail/get_detail', params)
+export const get_aimdetail = (params) => normalHanlder('get', '/detail/get_detail', params)
 // 获取 aim 更新信息
-export const get_aimChangelists = (params) => fetchHanlder('get', '/detail/aimInfo', params)
+export const get_aimChangelists = (params) => normalHanlder('get', '/detail/aimInfo', params)
 // 获取 aim 评论信息
-export const get_aimCommentList = (params) => fetchHanlder('get', '/comments/aimComment', params)
+export const get_aimCommentList = (params) => normalHanlder('get', '/comments/aimComment', params)
 // 获取 aim 赞赏信息
 export const get_praiseAddAttention = (params) => fetchHanlder('get', '/detail/aimPraise', params)
 // 修改 aim 赞赏信息
