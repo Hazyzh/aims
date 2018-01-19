@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Row, Col, Icon, Avatar } from 'antd'
 import { getCountBeginTime } from '@/util'
 import InnerComment from '../containers/InnerComment.js'
+import { Link } from 'react-router-dom'
 
 const ComponentItem = ({info, clickHandler, stateMap}) =>
   <div className='aim-detail-comments-box'>
@@ -18,19 +19,17 @@ const ComponentItem = ({info, clickHandler, stateMap}) =>
         </span>
       </Col>
       <Col offset={4} span={2} className='head-img'>
-        <a
-          href={info.commentUserUrl}
-          title={info.commentUserDes}>
+        <Link to={`/userInfo/${info.aimUser.int_id}`}>
           <Avatar
             shape='square'
             size='large'
             src={info.aimUser.avatar_url} />
-        </a>
+        </Link>
       </Col>
       <Col span={6}>
-        <a href={info.commentUserUrl}>
+        <Link to={`/userInfo/${info.aimUser.int_id}`}>
           {info.aimUser.user_name}
-        </a>
+        </Link>
         <p className='time'>{getCountBeginTime(info.createdAt)}</p>
       </Col>
     </Row>

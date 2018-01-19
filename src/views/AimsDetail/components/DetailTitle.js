@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Row, Col, Avatar, Divider, Icon, Button } from 'antd'
 import { getCountBeginTime } from '@/util'
+import { Link } from 'react-router-dom'
 
 const DetailTitle = ({aimDetailInfo, createUser, isPraise, isWatching, praiseOrAttentionHandler}) =>
   <div className='aim-detail-title'>
@@ -35,11 +36,13 @@ const DetailTitle = ({aimDetailInfo, createUser, isPraise, isWatching, praiseOrA
             {isWatching ? <Icon type='eye' /> : <Icon type='eye-o' />}
           </Button>
         </div>
-        <Avatar
-          className='item'
-          size='large'
-          shape='square'
-          src={createUser.avatar_url} />
+        <Link to={`/userInfo/${aimDetailInfo.aimUser && aimDetailInfo.aimUser.int_id}`}>
+          <Avatar
+            className='item'
+            size='large'
+            shape='square'
+            src={createUser.avatar_url} />
+        </Link>
       </Col>
     </Row>
   </div>

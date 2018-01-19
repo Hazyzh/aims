@@ -1,6 +1,7 @@
 import { createReducer } from '../util/index.js'
 import types from '@/types'
 import { clearToken } from '@/util/token.js'
+import { message } from 'antd'
 const {
   USER_GET_USER_INFO_SUCCEED, USER_GET_USER_INFO_FAILED, USER_OAUTH_ERROR,
   USER_LOGOUT
@@ -17,6 +18,8 @@ export default createReducer(initstate, {
     return { ...state, userInfo, login: true }
   },
   [USER_GET_USER_INFO_FAILED]: (state, action) => {
+    message.info('登录信息认证失败，请尝试重新登录')
+    clearToken()
     return { ...state, login: false }
   },
   [USER_OAUTH_ERROR]: (state, action) => {
