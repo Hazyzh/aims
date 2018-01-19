@@ -1,7 +1,7 @@
 // import React from 'react'
 import { Modal } from 'antd'
 import { store } from '../app.js'
-import { history } from '../router/index.js'
+import history from './history.js'
 
 const confirm = Modal.confirm
 
@@ -25,9 +25,6 @@ export const mustLogin = foo => () => {
       onOk () {
         console.log('OK')
         history.push('/login')
-      },
-      onCancel () {
-        console.log('Cancel')
       }
     })
   } else {

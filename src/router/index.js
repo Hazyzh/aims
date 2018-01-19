@@ -23,9 +23,8 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom'
-import createHistory from 'history/createBrowserHistory'
+import history from '@/util/history.js'
 
-export const history = createHistory()
 class Routers extends Component {
   componentWillMount() {
     const { getUserInfoHandler } = this.props
