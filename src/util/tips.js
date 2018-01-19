@@ -11,7 +11,7 @@ const confirm = Modal.confirm
  * @param  {func} foo 原来要执行的函数
  * @return {any}     如果用户登录过 则正常执行流程，如果没登录则提示登录
  */
-export const mustLogin = foo => () => {
+export const mustLogin = foo => (...rest) => {
   const { user: { login } } = store.getState()
   if (!login) {
     confirm({
@@ -27,6 +27,6 @@ export const mustLogin = foo => () => {
       }
     })
   } else {
-    return foo()
+    return foo(...rest)
   }
 }

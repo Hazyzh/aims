@@ -91,7 +91,7 @@ export const getCountBeginTime = (time) => {
     const hours = d.get('hours')
     const minutes = d.get('minutes')
     if (hours > 0) {
-      resText = hours + '小时' + minutes ? minutes + '分钟' : ''
+      resText = hours + '小时' + (minutes ? minutes + '分钟' : '')
     } else {
       resText = minutes ? minutes + '分钟' : '1分种'
     }

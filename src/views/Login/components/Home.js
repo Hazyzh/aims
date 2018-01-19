@@ -16,7 +16,7 @@ class Home extends Component {
     return (
       <div>
         <Button onClick={() => login(from.pathname)}>click</Button>
-        {from.pathname}
+        {from.pathname !== '/' && <p>你访问的页面需要登录后才能访问</p>}
       </div>
     )
   }
