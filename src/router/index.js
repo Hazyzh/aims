@@ -18,12 +18,14 @@ import Oauth from '../views/Oauth'
 // UserInfo
 import UserInfo from '../views/UserInfo'
 import {
-  BrowserRouter as Router,
+  Router,
   Route,
   Redirect,
   Switch
 } from 'react-router-dom'
+import createHistory from 'history/createBrowserHistory'
 
+export const history = createHistory()
 class Routers extends Component {
   componentWillMount() {
     const { getUserInfoHandler } = this.props
@@ -32,7 +34,7 @@ class Routers extends Component {
   }
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <div>
           <App>
             <Switch>

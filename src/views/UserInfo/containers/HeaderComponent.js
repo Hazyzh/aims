@@ -2,6 +2,7 @@ import HeaderComponent from '../components/HeaderComponent.js'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { addFriendHandler } from '@/actions/userInfo_action.js'
+import { mustLogin } from '@/util/tips.js'
 
 const mapStateToProps = ({userView, user}) => ({
   userInfo: userView.userInfo,
@@ -10,7 +11,7 @@ const mapStateToProps = ({userView, user}) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  addHandler: bindActionCreators(addFriendHandler, dispatch)
+  addHandler: mustLogin(bindActionCreators(addFriendHandler, dispatch))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderComponent)

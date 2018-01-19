@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   configureStore = require('./store/index.dev.js').default
 }
-const store = configureStore()
+export const store = configureStore()
 const render = Component => {
   if (process.env.NODE_ENV === 'production') {
     ReactDOM.render(
