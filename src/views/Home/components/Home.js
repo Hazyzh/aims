@@ -11,28 +11,26 @@ import NoMatch from '../../NoMatch'
 
 import PrivateRoute from '@/router/PrivateRoute.js'
 
+const breadDatalists = [
+  { path: '/home/share', text: '随便看看', icon: 'appstore' },
+  { path: '/home/my', text: '我的任务', icon: 'user' },
+  { path: '/home/addAims', text: '添加任务', icon: 'edit' }
+]
+
 const Home = withRouter((props) => {
   return (
     <div>
       <Breadcrumb className='home-tabbar'>
-        <Breadcrumb.Item>
-          <NavLink to='/home/share' activeStyle={{color: 'rgba(14, 191, 140, 0.5)'}}>
-            <Icon type='home' />
-            <span className='space'>随便看看</span>
-          </NavLink>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item>
-          <NavLink to='/home/my' activeStyle={{color: 'rgba(14, 191, 140, 0.5)'}}>
-            <Icon type='user' />
-            <span className='space'>我的任务</span>
-          </NavLink>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item>
-          <NavLink to='/home/addAims' activeStyle={{color: 'rgba(14, 191, 140, 0.5)'}}>
-            <Icon type='edit' />
-            <span className='space'>添加任务</span>
-          </NavLink>
-        </Breadcrumb.Item>
+        {
+          breadDatalists.map(d => (
+            <Breadcrumb.Item key={d.path}>
+              <NavLink to={d.path} activeStyle={{color: 'rgba(14, 191, 140, 0.5)'}}>
+                <Icon type={d.icon} />
+                <span className='space'>{d.text}</span>
+              </NavLink>
+            </Breadcrumb.Item>
+          ))
+        }
       </Breadcrumb>
       <Switch>
         <Route

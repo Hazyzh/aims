@@ -20,12 +20,9 @@ function getAimDays(deadline) {
 }
 
 class AddAims extends Component {
-  componentWillReceiveProps = (nextProps) => {
-    console.log(1, nextProps)
-  }
-
   addHandler = () => {
-    this.props.form.validateFields((err, values) => {
+    const { validateFields } = this.props.form
+    validateFields((err, values) => {
       if (!err) {
         const { content, deadline, title } = values
         const params = {
@@ -33,7 +30,6 @@ class AddAims extends Component {
           title,
           deadline: deadline.format('YYYY-MM-DD')
         }
-        console.log(params)
         this.props.addHandler(params)
       } else {
         console.log(err)
@@ -48,7 +44,7 @@ class AddAims extends Component {
   render () {
     const { getFieldDecorator, getFieldValue } = this.props.form
     const time = getAimDays(getFieldValue('deadline'))
-    const { loading } = this.props
+    const { loading, userInfo } = this.props
     return (
       <div>
         <div>
@@ -58,11 +54,9 @@ class AddAims extends Component {
         </div>
         <Row className='AddAims-avatar-box'>
           <Col span={4}>
-            <Avatar className='avatar'>
-              Hai_Dai
-            </Avatar>
+            <Avatar className='avatar' src={userInfo.avatar_url} />
             <a>
-              / Hazyzh
+              / {userInfo.user_name}
             </a>
           </Col>
           <Col span={12}>
@@ -123,7 +117,7 @@ class AddAims extends Component {
 
 AddAims.propTypes = {
   loading: PropTypes.bool.isRequired,
-
+  userInfo: PropTypes.object.isRequired,
   addHandler: PropTypes.func.isRequired
 }
 

@@ -9,7 +9,7 @@ const {
 
 const initstate = {
   userInfo: {},
-  login: false
+  login: true
 }
 
 export default createReducer(initstate, {
@@ -18,7 +18,8 @@ export default createReducer(initstate, {
     return { ...state, userInfo, login: true }
   },
   [USER_GET_USER_INFO_FAILED]: (state, action) => {
-    message.info('登录信息认证失败，请尝试重新登录')
+    const { noMsg } = action
+    if (!noMsg) { message.info('登录信息认证失败，请尝试重新登录') }
     clearToken()
     return { ...state, login: false }
   },

@@ -3,8 +3,9 @@ import AddAims from '../components/AddAims'
 import { bindActionCreators } from 'redux'
 import { addHandler } from '@/actions/addAims_action.js'
 
-const mapStateToProps = ({addAims}) => ({
-  loading: addAims.loading
+const mapStateToProps = ({user, addAims}) => ({
+  loading: addAims.loading,
+  userInfo: user.userInfo
 })
 
 const mapDispatchToProps = dispatch => ({

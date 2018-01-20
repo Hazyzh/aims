@@ -12,6 +12,8 @@ export function* fetchres () {
       const data = yield call(get_userInfoHandler)
       const userInfo = data.content
       yield put({type: USER_GET_USER_INFO_SUCCEED, userInfo})
+    } else {
+      yield put({type: USER_GET_USER_INFO_FAILED, noMsg: true})
     }
   } catch (err) {
     yield put({type: USER_GET_USER_INFO_FAILED, error: err})
