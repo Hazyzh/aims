@@ -39,7 +39,7 @@ class Routers extends Component {
           <App>
             {
               loading ? '' : <Switch>
-                <Route exact path='/' render={() => <Redirect to='/home/share' />} />
+                <Route exact path='/' render={() => <Redirect to='/home/popular' />} />
                 <Route path='/home' component={Home} />
                 <Route path='/aimsDetail/:aimId' component={AimsDetail} />
                 <Route path='/login' component={Login} />

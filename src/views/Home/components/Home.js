@@ -12,7 +12,7 @@ import NoMatch from '../../NoMatch'
 import PrivateRoute from '@/router/PrivateRoute.js'
 
 const breadDatalists = [
-  { path: '/home/share', text: '随便看看', icon: 'appstore' },
+  { path: '/home/popular', text: '热门', icon: 'appstore' },
   { path: '/home/my', text: '我的任务', icon: 'user' },
   { path: '/home/addAims', text: '添加任务', icon: 'edit' }
 ]
@@ -35,7 +35,7 @@ const Home = withRouter((props) => {
       <Switch>
         <Route
           exact
-          path='/home/share'
+          path='/home/popular'
           component={HomeLists} />
         <PrivateRoute path='/home/my' component={AimsLists} />
         <PrivateRoute path='/home/addAims' component={AddAims} />

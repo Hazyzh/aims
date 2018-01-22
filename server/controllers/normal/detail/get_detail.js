@@ -9,6 +9,7 @@ const fn_get = async (ctx, next) => {
         'id': aimId
       }
     })
+    if (!aim) ctx.restError(-1, '未查询到对应aim信息')
     aim.read_counts = aim.read_counts + 1
     await aim.save()
     ctx.rest(aim, '获取信息成功')

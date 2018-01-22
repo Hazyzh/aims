@@ -13,7 +13,7 @@ const AimsList = ({dataResouce}) =>
         <List.Item>
           <List.Item.Meta
             title={
-              <Link to={`/aimsDetail/${item.id}`}>
+              <Link to={`/aimsDetail/${item.aim_id}`}>
                 <Icon type='bulb' className='icon' />
                 {item.aimInfo.aim_title}
               </Link>

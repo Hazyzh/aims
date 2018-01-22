@@ -1,4 +1,4 @@
-import HomeLists from './containers/HomeLists.js'
+import HomePopular from './containers/HomePopular.js'
 import './index.less'
 
-export default HomeLists
+export default HomePopular

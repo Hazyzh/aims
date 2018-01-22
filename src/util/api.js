@@ -72,6 +72,7 @@ NormalApi.interceptors.response.use(
     if (response.data.code === 0) {
       return response.data
     } else {
+      message.error(response.data.message)
       return Promise.reject(response.data)
     }
   },

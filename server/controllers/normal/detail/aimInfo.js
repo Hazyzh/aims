@@ -1,11 +1,17 @@
 const { updateLists } = require('../../../model/index.js')
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
+
 // 获取
 const fn_get = async (ctx, next) => {
   const { aimId } = ctx.query
   try {
     const lists = await updateLists.findAll({
       'where': {
-        'aim_id': aimId
+        'aim_id': aimId,
+        'aim_status': {
+          [Op.ne]: '3'
+        }
       }
     })
 

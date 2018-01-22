@@ -1,9 +1,8 @@
-const aims = require('../../../model/aims.js')
+const { aims, updateLists } = require('../../../model/index.js')
 const moment = require('moment')
 
 const fn_post = async (ctx, next) => {
   const { content, title, deadline } = ctx.body
-  console.log('ruru')
   if (!title || !content || !deadline) return ctx.restError(-1, '参数格式不对')
   try {
     const userInfo = ctx.userInfo
@@ -15,6 +14,11 @@ const fn_post = async (ctx, next) => {
       aim_status: 0
     })
 
+    await updateLists.create({
+      aim_id: aim.id,
+      aim_status: 3,
+      user_id: userInfo.id
+    })
     ctx.rest(aim.id, '添加目标成功')
   } catch (err) {
     console.log('err', err)
