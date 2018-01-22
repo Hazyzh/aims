@@ -9,15 +9,15 @@ const fn_get = async (ctx, next) => {
         int_id: id
       }
     })
-    const [s, b] = [sid, userInfo.id].sort()
     let isFriend
-    if (s === b || !sid) {
+
+    if ((userInfo.id === sid) || !sid) {
       isFriend = false
     } else {
       isFriend = await friends.findOne({
         'where': {
-          s_uuid: s,
-          b_uuid: b
+          user_uuid: sid,
+          follow_uuid: userInfo.id
         }
       })
     }

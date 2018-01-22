@@ -5,11 +5,9 @@ const fn_post = async (ctx, next) => {
     const { id } = ctx.body
     const userInfo = ctx.userInfo
     if (ctx.checkParams(id)) return ctx.restError(-1, '参数格式不对')
-
-    const [s, b] = [id, userInfo.id].sort()
     const ship = await friends.create({
-      s_uuid: s,
-      b_uuid: b
+      user_uuid: userInfo.id,
+      follow_uuid: id
     })
     ctx.rest(ship, '添加好友成功')
   } catch (err) {

@@ -7,7 +7,8 @@ import { mustLogin } from '@/util/tips.js'
 const mapStateToProps = ({userView, user}) => ({
   userInfo: userView.userInfo,
   isSelf: user.userInfo.id === userView.userInfo.id,
-  loading: userView.addLoading
+  loading: userView.addLoading,
+  fetchLoading: userView.loading
 })
 
 const mapDispatchToProps = dispatch => ({

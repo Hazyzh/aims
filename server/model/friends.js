@@ -8,8 +8,8 @@ var friends = sequelize.define('aims-friend', {
     primaryKey: true,
     autoIncrement: true
   },
-  s_uuid: Sequelize.STRING(36),
-  b_uuid: Sequelize.STRING(36)
+  user_uuid: Sequelize.STRING(36),
+  follow_uuid: Sequelize.STRING(36)
 }, {
   deletedAt: false,
   timestamps: true

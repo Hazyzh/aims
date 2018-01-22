@@ -32,19 +32,22 @@ class Routers extends Component {
     getUserInfoHandler()
   }
   render() {
+    const { loading } = this.props
     return (
       <Router history={history}>
         <div>
           <App>
-            <Switch>
-              <Route exact path='/' render={() => <Redirect to='/home/share' />} />
-              <Route path='/home' component={Home} />
-              <Route path='/aimsDetail/:aimId' component={AimsDetail} />
-              <Route path='/login' component={Login} />
-              <Route path='/sinaOuath' component={Oauth} />
-              <Route path='/userInfo/:id' component={UserInfo} />
-              <Route component={NoMatch} />
-            </Switch>
+            {
+              loading ? '' : <Switch>
+                <Route exact path='/' render={() => <Redirect to='/home/share' />} />
+                <Route path='/home' component={Home} />
+                <Route path='/aimsDetail/:aimId' component={AimsDetail} />
+                <Route path='/login' component={Login} />
+                <Route path='/sinaOuath' component={Oauth} />
+                <Route path='/userInfo/:id' component={UserInfo} />
+                <Route component={NoMatch} />
+              </Switch>
+            }
           </App>
         </div>
       </Router>
@@ -52,7 +55,9 @@ class Routers extends Component {
   }
 }
 
-const mapStateToProps = () => ({})
+const mapStateToProps = ({user}) => ({
+  loading: user.fetingData
+})
 
 const mapDispatchToProps = dispatch => ({
   getUserInfoHandler: bindActionCreators(getUserInfoHandler, dispatch)

@@ -1,4 +1,4 @@
-import { call, takeEvery, put, fork } from 'redux-saga/effects'
+import { call, takeEvery, put, select, fork } from 'redux-saga/effects'
 import { get_userBaseInfoHandler, post_addFriendsHandler, get_latesetDynamic, get_normalAimsHander } from '../actions/userInfo_action.js'
 import types from '@/types'
 
@@ -11,7 +11,8 @@ const {
 // 获取用户信息
 export function* fetchres (action) {
   try {
-    const params = action.payload
+    const sid = yield select(({user}) => user.userInfo.id)
+    const params = { ...action.payload, sid }
     const data = yield call(get_userBaseInfoHandler, params)
     const userInfo = data.content
     yield put({type: USERINFO_GET_BASE_INFO_SUCCEED, userInfo})
