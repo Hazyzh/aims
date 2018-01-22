@@ -6,6 +6,7 @@ import homeView from './aimsList_reducer.js'
 import aimDetail from './aimDetail_reducer.js'
 import user from './user_reducer.js'
 import userView from './userInfo_reducer.js'
+import homePopular from './homePopular_reducer.js'
 
 const rootReducer = combineReducers({
   user,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   addAims,
   homeView,
   aimDetail,
-  userView
+  userView,
+  homePopular
 })
 
 export default rootReducer

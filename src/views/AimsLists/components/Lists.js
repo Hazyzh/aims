@@ -94,6 +94,7 @@ const Lists = ({aimsList, pagination, loading, fetchAimsList}) =>
   <List
     itemLayout='vertical'
     size='large'
+    className='aimsLists'
     pagination={createPagination(pagination, fetchAimsList)}
     loading={loading}
     dataSource={aimsList}

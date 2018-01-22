@@ -5,6 +5,7 @@ import homeViewSaga from './homeView.js'
 import detailSaga from './aimDetail.js'
 import userSaga from './user.js'
 import userInfoSaga from './userInfo.js'
+import homePopularSaga from './homePopular.js'
 
 export default function* rootSaga () {
   yield all([
@@ -13,6 +14,7 @@ export default function* rootSaga () {
     homeViewSaga(),
     detailSaga(),
     userSaga(),
-    userInfoSaga()
+    userInfoSaga(),
+    homePopularSaga()
   ])
 }

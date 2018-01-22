@@ -13,7 +13,7 @@ class aimsList extends Component {
 
   render () {
     return (
-      <div className='aimsLists'>
+      <div>
         <TopSelect />
         <Lists />
       </div>

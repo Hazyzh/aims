@@ -89,7 +89,7 @@ NormalApi.interceptors.response.use(
  * @param  {object} data   data 参数如果不是 get 请求, 还没有穿传入 data 参数则 params 为 data
  * @return {object}        ajax 请求的 promise 对象
  */
-export const normalHanlder = (method, url, params, data) => {
+export const normalHanlder = (method, url, params = {}, data) => {
   if (method !== 'get' && !data) {
     data = params
     params = {}
