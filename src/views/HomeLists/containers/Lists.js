@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import Lists from '../../AimsLists/components/Lists.js'
+import Lists from '@/components/Lists.js'
 import { bindActionCreators } from 'redux'
 import { getAimsChangeList } from '@/actions/homePopular_action.js'
 

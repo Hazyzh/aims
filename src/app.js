@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 
 import App from './router'
 import './common.less'
+import './components/index.less'
 
 import moment from 'moment'
 import 'moment/locale/zh-cn'

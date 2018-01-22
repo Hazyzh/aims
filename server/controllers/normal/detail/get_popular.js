@@ -1,4 +1,4 @@
-const { aims } = require('../../../model/index.js')
+const { aims, user } = require('../../../model/index.js')
 
 const fn_get = async (ctx, next) => {
   const { current = 1, pageSize = 5 } = ctx.query
@@ -7,6 +7,7 @@ const fn_get = async (ctx, next) => {
   try {
     // 根据参数设置查询字段
     const lists = await aims.findAndCountAll({
+      include: [ { model: user, as: 'aimUser', attributes: ['user_name', 'avatar_url', 'int_id'] } ],
       'limit': NpageSize,
       'offset': (Ncurrent - 1) * NpageSize,
       'order': [

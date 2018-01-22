@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
-import { List, Icon, Tag, Card } from 'antd'
+import { List, Icon, Tag, Card, Avatar } from 'antd'
 import { getTimeInfo } from '@/util'
 import { Link } from 'react-router-dom'
+import backgroundImage from './bg.png'
 // 具体的按钮
 const IconText = ({ type, text }) => (
   <span>
@@ -36,7 +37,7 @@ const getInfo = (aimStatus, itemTimeInfo) => {
 }
 
 // 渲染每一项的函数
-const renderHandler = item => {
+const renderHandler = showHeadImg => item => {
   let itemTimeInfo = {}
   const aimStatus = item.aim_status
   if (aimStatus === 0) {
@@ -56,7 +57,12 @@ const renderHandler = item => {
               <span className='title-times'>剩余时间</span>
             </div>
           }
-          bodyStyle={{ background: colors[renderInfo.color], width: '275px' }} >
+          bodyStyle={{
+            backgroundColor: colors[renderInfo.color],
+            backgroundImage: 'url(' + backgroundImage + ')',
+            width: '275px',
+            backgroundSize: '100%'
+          }} >
           <div className='last-days'>
             {renderInfo.text}
           </div>
@@ -64,7 +70,7 @@ const renderHandler = item => {
       } >
       <List.Item.Meta
         title={<Link to={`/aimsDetail/${item.id}`}>{item.aim_title}</Link>}
-        description={createDescription(item)} />
+        description={createDescription(item, showHeadImg)} />
       {item.aim_content}
     </List.Item>
   )
@@ -77,8 +83,16 @@ const createPagination = (pagination, action) => ({
 })
 
 // 生成 description 内容
-const createDescription = item => (
+const createDescription = (item, showHeadImg) => (
   <div>
+    {
+      showHeadImg &&
+      <span className='head-img'>
+        <Link to={`/userInfo/${item.aimUser.int_id}`}>
+          <Avatar src={item.aimUser.avatar_url} />
+        </Link>
+      </span>
+    }
     <Tag color='rgba(14, 191, 140, 0.5)'>
       <Icon type='calendar' />
       <span className='title-times'>{moment(item.createdAt).format('YYYY/MM/DD')}</span>
@@ -90,7 +104,7 @@ const createDescription = item => (
   </div>
 )
 
-const Lists = ({aimsList, pagination, loading, fetchAimsList}) =>
+const Lists = ({aimsList, pagination, loading, fetchAimsList, showHeadImg}) =>
   <List
     itemLayout='vertical'
     size='large'
@@ -98,13 +112,15 @@ const Lists = ({aimsList, pagination, loading, fetchAimsList}) =>
     pagination={createPagination(pagination, fetchAimsList)}
     loading={loading}
     dataSource={aimsList}
-    renderItem={renderHandler} />
+    renderItem={renderHandler(showHeadImg)} />
 
 Lists.propTypes = {
   aimsList: PropTypes.array.isRequired,
   pagination: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
-  fetchAimsList: PropTypes.func.isRequired
+  fetchAimsList: PropTypes.func.isRequired,
+  // 是否展示头像
+  showHeadImg: PropTypes.bool
 }
 
 export default Lists

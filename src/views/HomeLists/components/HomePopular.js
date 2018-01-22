@@ -9,7 +9,7 @@ class HomePopular extends Component {
   render() {
     return (
       <div>
-        <List />
+        <List showHeadImg />
       </div>
     )
   }
