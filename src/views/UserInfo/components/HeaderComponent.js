@@ -25,7 +25,7 @@ const HeaderComponent = ({userInfo, isSelf, addHandler, loading, fetchLoading}) 
     </div>
     <div className='head-image'>
       <img src={userInfo.avatar_url} />
-      {userInfo.isFriend && <Icon type='team' className='friend-ship-icon' />}
+      {userInfo.isFriend && <Icon type='smile' className='friend-ship-icon' />}
     </div>
   </div>
 

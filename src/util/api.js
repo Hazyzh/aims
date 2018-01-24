@@ -15,7 +15,6 @@ Api.interceptors.request.use(
     return config
   },
   error => {
-    console.log(error)
     return Promise.reject(error)
   }
 )
@@ -29,7 +28,7 @@ Api.interceptors.response.use(
       if (response.data.code === 401) {
         console.log('un aouth')
       } else {
-        message.error(response.data.message)
+        message.error(response.data.message || '请求失败')
       }
       return Promise.reject(response.data)
     }
@@ -72,7 +71,7 @@ NormalApi.interceptors.response.use(
     if (response.data.code === 0) {
       return response.data
     } else {
-      message.error(response.data.message)
+      message.error(response.data.message || '请求失败')
       return Promise.reject(response.data)
     }
   },

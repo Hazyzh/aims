@@ -4,6 +4,8 @@ import { NavLink, withRouter, Route, Switch } from 'react-router-dom'
 // aims 列表
 import AimsLists from '../../AimsLists'
 import HomeLists from '../../HomeLists'
+// 我的动态
+import Dynamic from '../../Dynamic'
 // 新增 aims
 import AddAims from '../../AddAims'
 // 404
@@ -13,6 +15,7 @@ import PrivateRoute from '@/router/PrivateRoute.js'
 
 const breadDatalists = [
   { path: '/home/popular', text: '热门', icon: 'appstore' },
+  { path: '/home/dynamic', text: '动态', icon: 'share-alt' },
   { path: '/home/my', text: '我的任务', icon: 'user' },
   { path: '/home/addAims', text: '添加任务', icon: 'edit' }
 ]
@@ -38,6 +41,7 @@ const Home = withRouter((props) => {
           path='/home/popular'
           component={HomeLists} />
         <PrivateRoute path='/home/my' component={AimsLists} />
+        <PrivateRoute path='/home/dynamic' component={Dynamic} />
         <PrivateRoute path='/home/addAims' component={AddAims} />
         <Route component={NoMatch} />
       </Switch>

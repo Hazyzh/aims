@@ -32,14 +32,14 @@ class Routers extends Component {
     getUserInfoHandler()
   }
   render() {
-    const { loading } = this.props
+    const { loading, login } = this.props
     return (
       <Router history={history}>
         <div>
           <App>
             {
               loading ? '' : <Switch>
-                <Route exact path='/' render={() => <Redirect to='/home/popular' />} />
+                <Route exact path='/' render={() => login ? <Redirect to='/home/dynamic' /> : <Redirect to='/home/popular' />} />
                 <Route path='/home' component={Home} />
                 <Route path='/aimsDetail/:aimId' component={AimsDetail} />
                 <Route path='/login' component={Login} />
@@ -56,7 +56,8 @@ class Routers extends Component {
 }
 
 const mapStateToProps = ({user}) => ({
-  loading: user.fetingData
+  loading: user.fetingData,
+  login: user.login
 })
 
 const mapDispatchToProps = dispatch => ({
