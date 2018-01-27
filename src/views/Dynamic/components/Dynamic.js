@@ -11,7 +11,7 @@ class Dynamic extends Component {
   render() {
     return (
       <div>
-        <AllkindLists />
+        <AllkindLists showLoadingMore />
       </div>
     )
   }

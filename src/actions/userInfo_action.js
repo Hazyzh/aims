@@ -8,9 +8,9 @@ export const getUserBaseInfoHandler = (params = {}) => ({
   payload: params
 })
 // 添加好友按钮的事件
-export const addFriendHandler = (userId) => ({
+export const addFriendHandler = (userId, type) => ({
   type: USERINFO_POST_ADD_FRIEND,
-  payload: { id: userId }
+  payload: { id: userId, type }
 })
 // 新增 aims 的请求
 export const get_userBaseInfoHandler = (params) => normalHanlder('get', '/user/userBaseInfo', params)

@@ -17,9 +17,19 @@ const HeaderComponent = ({userInfo, isSelf, addHandler, loading, fetchLoading}) 
         <Button
           type='primary'
           loading={loading}
-          onClick={() => addHandler(userInfo.id)}>
+          onClick={() => addHandler(userInfo.id, 1)}>
           <Icon type='plus' />
-          添加好友
+          添加关注
+        </Button>
+      }
+      {
+        !isSelf && userInfo.isFriend && !fetchLoading &&
+        <Button
+          type='primary'
+          loading={loading}
+          onClick={() => addHandler(userInfo.id, 0)}>
+          <Icon type='plus' />
+          取消关注
         </Button>
       }
     </div>

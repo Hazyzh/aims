@@ -1,11 +1,12 @@
-import UserDynamic from '../components/UserDynamic.js'
+import AllkindLists from '@/components/AllkindLists.js'
 import { connect } from 'react-redux'
 
 const mapStateToProps = ({userView}) => ({
-  dataResouce: userView.dynamidLists
+  dataSource: userView.dynamidLists,
+  loading: false
 })
 
 const mapDispatchToProps = dispatch => ({
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserDynamic)
+export default connect(mapStateToProps, mapDispatchToProps)(AllkindLists)

@@ -34,8 +34,10 @@ export default createReducer(initstate, {
     return { ...state, addLoading: true }
   },
   [USERINFO_POST_ADD_FRIEND_SUCCEED]: (state, action) => {
-    message.success('添加成功')
-    const userInfo = { ...state.userInfo, isFriend: true }
+    const { type } = action.params
+    const text = type === 1 ? '添加成功' : '删除成功'
+    message.success(text)
+    const userInfo = { ...state.userInfo, isFriend: type === 1 }
     return { ...state, addLoading: false, userInfo }
   },
   [USERINFO_POST_ADD_FRIEND_FAILED]: (state, action) => {

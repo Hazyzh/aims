@@ -12,10 +12,13 @@ class AllkindLists extends Component {
     fetchHandler(params)
   }
   render () {
-    const { dataSource, loading } = this.props
-    const { pagination: { current, pageSize, total } } = this.props
-    const showLoadingMore = total > current * pageSize
-    const loadMore = showLoadingMore ? (
+    const { dataSource, loading, showLoadingMore } = this.props
+    let isShowLoadingMore = false
+    if (showLoadingMore) {
+      const { pagination: { current, pageSize, total } } = this.props
+      isShowLoadingMore = showLoadingMore && total > current * pageSize
+    }
+    const loadMore = isShowLoadingMore ? (
       <div style={{ textAlign: 'center', marginTop: 12, height: 32, lineHeight: '32px' }}>
         {loading && <Spin />}
         {!loading && <Button onClick={this.onLoadMore} type='primary'>... 加载更多</Button>}
@@ -36,8 +39,9 @@ class AllkindLists extends Component {
 AllkindLists.propTypes = {
   dataSource: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
-  pagination: PropTypes.object.isRequired,
-  fetchHandler: PropTypes.func.isRequired
+  pagination: PropTypes.object,
+  fetchHandler: PropTypes.func,
+  showLoadingMore: PropTypes.bool
 }
 
 export default AllkindLists

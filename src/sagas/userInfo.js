@@ -22,13 +22,13 @@ export function* fetchres (action) {
     yield put({type: USERINFO_GET_BASE_INFO_FAILED, error: err})
   }
 }
-// 增加新的好友
+// 增加新的好友 或取消
 export function* addHander (action) {
   try {
     const params = action.payload
     const data = yield call(post_addFriendsHandler, params)
 
-    yield put({type: USERINFO_POST_ADD_FRIEND_SUCCEED, data})
+    yield put({type: USERINFO_POST_ADD_FRIEND_SUCCEED, data, params})
   } catch (err) {
     yield put({type: USERINFO_POST_ADD_FRIEND_FAILED, error: err})
   }

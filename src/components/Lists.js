@@ -77,7 +77,7 @@ const renderHandler = showHeadImg => item => {
 }
 
 // 生成分页内容
-const createPagination = (pagination, action) => ({
+const createPagination = (pagination, action) => !pagination ? null : ({
   ...pagination,
   onChange: (current) => action({current})
 })
@@ -116,9 +116,9 @@ const Lists = ({aimsList, pagination, loading, fetchAimsList, showHeadImg}) =>
 
 Lists.propTypes = {
   aimsList: PropTypes.array.isRequired,
-  pagination: PropTypes.object.isRequired,
-  loading: PropTypes.bool.isRequired,
-  fetchAimsList: PropTypes.func.isRequired,
+  pagination: PropTypes.object,
+  loading: PropTypes.bool,
+  fetchAimsList: PropTypes.func,
   // 是否展示头像
   showHeadImg: PropTypes.bool
 }

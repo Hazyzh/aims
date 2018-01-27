@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Layout } from 'antd'
 import './index.less'
 import HeaderComponent from './containers/HeaderComponent.js'
+import FooterComponent from './containers/FooterComponent.js'
 
 const { Header, Footer, Content } = Layout
 
@@ -17,7 +18,9 @@ const App = ({children}) =>
           {children}
         </div>
       </Content>
-      <Footer>Footer</Footer>
+      <Footer className='footer-box'>
+        <FooterComponent />
+      </Footer>
     </Layout>
   </div>
 

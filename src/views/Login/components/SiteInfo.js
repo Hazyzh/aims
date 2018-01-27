@@ -5,7 +5,7 @@ const SiteInfo = () =>
     <h3>
       <span className='head-text'>Aims</span>
     </h3>
-    <p>其实有很多人正在关注着你的成长</p>
+    <p>The important thing in life is to have a great aim, and the determination to attain it. </p>
   </div>
 
 export default SiteInfo

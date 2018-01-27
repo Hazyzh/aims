@@ -1,11 +1,11 @@
-import AimsList from '../components/AimsList.js'
 import { connect } from 'react-redux'
+import Lists from '@/components/Lists.js'
 
 const mapStateToProps = ({userView}) => ({
-  dataResouce: userView.aimsLists
+  aimsList: userView.aimsLists
 })
 
 const mapDispatchToProps = dispatch => ({
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(AimsList)
+export default connect(mapStateToProps, mapDispatchToProps)(Lists)
