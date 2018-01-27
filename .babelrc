@@ -27,6 +27,7 @@
       ],
       "plugins": [
         "transform-runtime",
+        "transform-react-remove-prop-types",
         ["import", { "libraryName": "antd", "style": true }]
       ]
     }
