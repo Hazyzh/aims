@@ -8,7 +8,7 @@ const HeaderComponent = ({login, userInfo, logoutHandler}) =>
   <div className='header-component'>
     <span className='logo'>
       <Link to='/'>
-        <Avatar className='my-logo' src={logo} />ß
+        <Avatar className='my-logo' src={logo} />
       </Link>
     </span>
     <span className='user-info'>
