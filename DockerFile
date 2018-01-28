@@ -1,0 +1,12 @@
+FROM node
+
+RUN mkdir /home/app
+
+WORKDIR /home/app
+
+RUN npm i cnpm -g \
+    && cnpm i pm2 -g
+
+CMD ["pm2", "start", "index.js", "--no-daemon"]
+
+EXPOSE 3000
