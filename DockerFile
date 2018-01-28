@@ -7,6 +7,6 @@ WORKDIR /home/app
 RUN npm i cnpm -g \
     && cnpm i pm2 -g
 
-CMD ["pm2", "start", "index.js", "--no-daemon"]
+CMD ["pm2", "start", "server/index.js", "--no-daemon"]
 
 EXPOSE 3000
