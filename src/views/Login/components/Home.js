@@ -4,7 +4,7 @@ import { Button, Icon, Alert, Row, Col } from 'antd'
 import SiteInfo from './SiteInfo.js'
 
 const client_id = '1248280488'
-const redirect_uri = 'http://aims.hazyzh.com:8080/sinaOuath'
+const redirect_uri = 'http://aims.hazyzh.com/sinaOuath'
 
 const login = (route) => {
   const url = `https://api.weibo.com/oauth2/authorize?client_id=${client_id}&response_type=code&redirect_uri=${encodeURIComponent(redirect_uri)}&state=${encodeURIComponent(route)}`
