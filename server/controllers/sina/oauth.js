@@ -16,7 +16,7 @@ const getToken = async (ctx, next) => {
         client_secret: appSecret,
         grant_type: 'authorization_code',
         code,
-        redirect_uri: 'http://aims.hazyzh.com:8080/sinaOuath'
+        redirect_uri: 'http://aims.hazyzh.com/sinaOuath'
       }
     })
     const { access_token, uid } = askData.data
