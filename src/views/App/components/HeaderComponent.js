@@ -1,16 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { Avatar, Popconfirm } from 'antd'
+import { Popconfirm } from 'antd'
 import logo from './aims.png'
 
 const HeaderComponent = ({login, userInfo, logoutHandler}) =>
   <div className='header-component'>
-    <span className='logo'>
-      <Link to='/'>
-        <Avatar className='my-logo' src={logo} />
-      </Link>
-    </span>
+    <Link to='/'>
+      <img className='my-logo' title='aims' src={logo} />
+    </Link>
     <span className='user-info'>
       {
         login ? <span>
