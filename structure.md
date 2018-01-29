@@ -17,8 +17,10 @@
   - theme.js          antd 自定义主题配置文件
   - untils            打包配置使用到的工具
   - webpack.*.js      基础配置和不同环境下的打包配置文件
+
 - config           前端打包配置文件
   - index             打包手动配置文件
+
 - server           服务端文件
   - controllers       控制器主要业务逻辑路对应处理方法
   - middlewares       koa 中间件包括（body上挂载变量，路由配置，spa路由模式兼容，restapi方法挂载）
@@ -26,6 +28,7 @@
   - util              服务端用到的一些工具文件
   - index             服务端启动文件
   - watch             服务端监听热更新（直接监听文件内容改变，用pm2重新加载项目）
+
 - src              前端项目文件
   - actions           redux Action Creator文件
   - components        通用组建文件
@@ -37,6 +40,7 @@
   - util              前端通用工具类文件
   - views             不同路由视图文件
   - app               前端入口文件
+  
 - eslintrc         eslint配置文件 在standard基础上修改
 - index.*.html     正式环境和开发环境模版文件，正式环境一些库用的cnd引入   
 ```
