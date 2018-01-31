@@ -22,7 +22,8 @@ const webpackConfig = merge(baseWebpackConfig, {
   externals: {
       'react': 'React',
       'react-dom': 'ReactDOM',
-      'antd': 'antd'
+      'antd': 'antd',
+      'moment': 'moment'
   },
   devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {

@@ -25,6 +25,16 @@ import {
 } from 'react-router-dom'
 import history from '@/util/history.js'
 
+let LocaleProvider
+let zh_CN
+if (process.env.NODE_ENV !== 'production') {
+  LocaleProvider = require('antd').LocaleProvider
+  zh_CN = require('antd/lib/locale-provider/zh_CN')
+} else {
+  LocaleProvider = window.antd.LocaleProvider
+  zh_CN = window.antd.locales.zh_CN.default
+}
+
 class Routers extends Component {
   componentWillMount() {
     const { getUserInfoHandler } = this.props
@@ -34,23 +44,25 @@ class Routers extends Component {
   render() {
     const { loading, login } = this.props
     return (
-      <Router history={history}>
-        <div>
-          <App>
-            {
-              loading ? '' : <Switch>
-                <Route exact path='/' render={() => login ? <Redirect to='/home/dynamic' /> : <Redirect to='/home/popular' />} />
-                <Route path='/home' component={Home} />
-                <Route path='/aimsDetail/:aimId' component={AimsDetail} />
-                <Route path='/login' component={Login} />
-                <Route path='/sinaOuath' component={Oauth} />
-                <Route path='/userInfo/:id' component={UserInfo} />
-                <Route component={NoMatch} />
-              </Switch>
-            }
-          </App>
-        </div>
-      </Router>
+      <LocaleProvider locale={zh_CN}>
+        <Router history={history}>
+          <div>
+            <App>
+              {
+                loading ? '' : <Switch>
+                  <Route exact path='/' render={() => login ? <Redirect to='/home/dynamic' /> : <Redirect to='/home/popular' />} />
+                  <Route path='/home' component={Home} />
+                  <Route path='/aimsDetail/:aimId' component={AimsDetail} />
+                  <Route path='/login' component={Login} />
+                  <Route path='/sinaOuath' component={Oauth} />
+                  <Route path='/userInfo/:id' component={UserInfo} />
+                  <Route component={NoMatch} />
+                </Switch>
+              }
+            </App>
+          </div>
+        </Router>
+      </LocaleProvider>
     )
   }
 }
