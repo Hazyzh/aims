@@ -94,7 +94,6 @@ class AddAims extends Component {
               <DatePicker
                 showToday={false}
                 placeholder='请选择截止日期'
-                rows={8}
                 disabledDate={disabledDate} />
             )}
             <span className='tips'>

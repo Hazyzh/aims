@@ -10,6 +10,7 @@ import './components/index.less'
 import moment from 'moment'
 import 'moment/locale/zh-cn'
 moment.locale('zh-cn')
+
 let configureStore
 if (process.env.NODE_ENV === 'production') {
   configureStore = require('./store/index.pro.js').default
