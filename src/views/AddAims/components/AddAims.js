@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Row, Col, Input, Avatar, Form, Divider, DatePicker, Button, message } from 'antd'
 import moment from 'moment'
-
 const { TextArea } = Input
 const FormItem = Form.Item
 

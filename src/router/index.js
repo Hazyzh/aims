@@ -29,10 +29,10 @@ let LocaleProvider
 let zh_CN
 if (process.env.NODE_ENV !== 'production') {
   LocaleProvider = require('antd').LocaleProvider
-  zh_CN = require('antd/lib/locale-provider/zh_CN')
+  zh_CN = require('antd/lib/locale-provider/zh_CN').default
 } else {
   LocaleProvider = window.antd.LocaleProvider
-  zh_CN = window.antd.locales.zh_CN.default
+  zh_CN = window.antd.locales.zh_CN
 }
 
 class Routers extends Component {
