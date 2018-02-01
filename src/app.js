@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 
+import 'antd/dist/antd.less'
 import App from './router'
 import './common.less'
 import './components/index.less'

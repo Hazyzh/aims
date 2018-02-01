@@ -23,7 +23,8 @@ const webpackConfig = merge(baseWebpackConfig, {
       'react': 'React',
       'react-dom': 'ReactDOM',
       'antd': 'antd',
-      'moment': 'moment'
+      'moment': 'moment',
+      'moment/locale/zh-cn': 'moment.locale'
   },
   devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
@@ -36,6 +37,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': env
     }),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     // UglifyJs do not support ES6+, you can also use babel-minify for better treeshaking: https://github.com/babel/minify
     new webpack.optimize.UglifyJsPlugin({
       compress: {
