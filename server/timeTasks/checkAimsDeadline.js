@@ -28,7 +28,7 @@ const systemUpdateInfo = async (info = {}) => {
 
 const now = new Date()
 /**
- * 每天凌晨1点执行任务 查询超时而且未被提醒的aims 然后发出aim
+ * 每天凌晨1点执行任务 查询超时而且未被提醒的aims 然后发出提醒
  * @return {Promise} [description]
  */
 const checkDeadline = async () => {
