@@ -12,6 +12,7 @@ var aims = sequelize.define('aims-aim', {
   aim_title: Sequelize.STRING(64),
   aim_content: Sequelize.STRING(255),
   read_counts: Sequelize.INTEGER,
+  aim_isRemind: Sequelize.BOOLEAN,
   praise_counts: {
     type: Sequelize.INTEGER,
     defaultValue: 0
