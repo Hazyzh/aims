@@ -26,12 +26,13 @@ const systemUpdateInfo = async (info = {}) => {
   }
 }
 
-const now = new Date()
 /**
  * 每天凌晨1点执行任务 查询超时而且未被提醒的aims 然后发出提醒
  * @return {Promise} [description]
  */
 const checkDeadline = async () => {
+  console.log(colors.rainbow(logs + '启动！'))
+  const now = new Date()
   const allaims = await aims.findAll({
     attributes: ['id', 'user_id'],
     where: {
@@ -62,11 +63,11 @@ const checkDeadline = async () => {
 }
 
 const taskConfig = {
-  hour: 1, minute: 0
+  hour: 17, minute: 0
 }
 schedule.scheduleJob(taskConfig, checkDeadline)
 
 const { hour, minute } = taskConfig
 const fmt = n => n.toString().padStart(2, '0')
-const logs = `⏰ ==> 启动定时任务，每天 ${fmt(hour)} 点 ${fmt(minute)} 分，开启查询超时提醒任务!`
+const logs = `⏰ ==> 启动定时任务，每天 ${fmt((hour + 8) % 24)} 点 ${fmt(minute)} 分，开启查询超时提醒任务!`
 console.log(colors.rainbow(logs))
