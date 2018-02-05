@@ -2,7 +2,7 @@
 
 #### 技术栈
 
-前端基于 `react`,`antd` 组件库构建,内容用 `redux-saga` 管理状态，`redux-router` 生成前端路由。
+前端基于 `react`,`antd` 组件库构建,内容用 `redux-saga` 管理状态，`react-router` 生成前端路由。
 
 后端基于 `nodejs` 的 `koa` 框架构建,数据存储使用的 `mysql` 于 `node` 连接使用的
 `Sequelize` orm框架。
