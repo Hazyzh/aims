@@ -25,7 +25,8 @@
   - controllers       控制器主要业务逻辑路对应处理方法
   - middlewares       koa 中间件包括（body上挂载变量，路由配置，spa路由模式兼容，restapi方法挂载）
   - model             Sequelize 定义的一些表模型，统一在index文件下暴露出去
-  - util              服务端用到的一些工具文件
+  - timeTasks         定时器相关任务
+  - util              服务端用到的一些工具文件
   - index             服务端启动文件
   - watch             服务端监听热更新（直接监听文件内容改变，用pm2重新加载项目）
 
