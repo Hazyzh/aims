@@ -43,8 +43,11 @@ const fn_get = async (ctx, next) => {
       ],
       'where': {
         [Op.or]: {
-          'user_id': {
-            [Op.in]: ids
+          [Op.and]: {
+            'user_id': {
+              [Op.in]: ids
+            },
+            'aim_status': 3
           },
           'aim_id': {
             [Op.in]: watchAims
