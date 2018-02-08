@@ -25,6 +25,7 @@
         "stage-2"
       ],
       "plugins": [
+        ["import-separation", { "libraryName": "antd", "style": true, "onlyStyle": true }],
         "transform-runtime",
         ["transform-react-remove-prop-types", { "mode": "remove", "removeImport": true }]
       ]
