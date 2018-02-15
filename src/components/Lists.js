@@ -47,7 +47,7 @@ const renderHandler = showHeadImg => item => {
   return (
     <List.Item
       key={item.title}
-      actions={[<IconText type='star-o' text={item.watch_counts} />, <IconText type='like-o' text={item.praise_counts} />, <IconText type='message' text={item.inner_counts} />]}
+      actions={[<IconText type='eye-o' text={item.watch_counts} />, <IconText type='like-o' text={item.praise_counts} />, <IconText type='message' text={item.inner_counts} />]}
       extra={
         <Card
           hoverable
