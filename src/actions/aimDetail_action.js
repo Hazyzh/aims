@@ -73,3 +73,5 @@ export const get_aimCommentList = (params) => normalHanlder('get', '/comments/ai
 export const get_praiseAddAttention = (params) => fetchHanlder('get', '/detail/aimPraise', params)
 // 修改 aim 赞赏信息
 export const put_praiseAddAttention = (params) => fetchHanlder('put', '/detail/aimPraise', params)
+// 获取 aim 关注人员列表事件
+export const get_aimWatchings = (params) => normalHanlder('get', '/detail/get_watchings', params)

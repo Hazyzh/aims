@@ -1,5 +1,9 @@
 import { call, takeEvery, put, select, fork } from 'redux-saga/effects'
-import { get_aimdetail, post_aimInfo, get_aimChangelists, post_aimAddComment, get_aimCommentList, get_praiseAddAttention, put_praiseAddAttention } from '../actions/aimDetail_action.js'
+import {
+  get_aimdetail, post_aimInfo, get_aimChangelists, post_aimAddComment, get_aimCommentList, get_praiseAddAttention, put_praiseAddAttention,
+  get_aimWatchings
+} from '../actions/aimDetail_action.js'
+import { message } from 'antd'
 import types from '@/types'
 const {
   AIM_DETAIL_GET_DETAIL, AIM_DETAIL_GET_DETAIL_SUCCEED, AIM_DETAIL_GET_DETAIL_FAILED,
@@ -9,7 +13,7 @@ const {
   AIM_DETAIL_GET_AIM_COMMENTS, AIM_DETAIL_GET_AIM_COMMENTS_SUCCEED, AIM_DETAIL_GET_AIM_COMMENTS_FAILED,
   AIM_DETAIL_POST_ADD_INNER_COMMENT, AIM_DETAIL_GET_PRAISE_AND_ATTENTION, AIM_DETAIL_GET_PRAISE_AND_ATTENTION_SUCCEED,
   AIM_DETAIL_GET_PRAISE_AND_ATTENTION_FAILED, AIM_DETAIL_PUT_PRAISE_AND_ATTENTION, AIM_DETAIL_PUT_PRAISE_AND_ATTENTION_SUCCEED,
-  AIM_DETAIL_PUT_PRAISE_AND_ATTENTION_FAILED
+  AIM_DETAIL_PUT_PRAISE_AND_ATTENTION_FAILED, AIM_DETAIL_GET_WATCHINGS_LIST_SUCCEED
 } = types
 
 // 获取aim 详情数据
@@ -19,6 +23,10 @@ export function* fetchres () {
   try {
     const data = yield call(get_aimdetail, params)
     yield put({type: AIM_DETAIL_GET_DETAIL_SUCCEED, aimDetailInfo: data.content})
+    if (data.content.aim_status !== 0) {
+      const listRes = yield call(get_aimWatchings, params)
+      yield put({type: AIM_DETAIL_GET_WATCHINGS_LIST_SUCCEED, watchingUsers: listRes.content.map(d => d.userInfo)})
+    }
   } catch (err) {
     yield put({type: AIM_DETAIL_GET_DETAIL_FAILED, error: err})
   }
@@ -123,17 +131,24 @@ export function* getPraiseAndAttention(action) {
 export function* putPraiseAndAttention(action) {
   const { actionType: type } = action.payload
   const userId = yield select(({user}) => user.userInfo.id)
-  const { aimId, isPraise, isWatching } = yield select(({aimDetail}) => aimDetail)
+  const { aimId, isPraise, isWatching, aimDetailInfo: { aim_status } } = yield select(({aimDetail}) => aimDetail)
   let status
   if (type === 1) {
     status = isPraise ? 0 : 1
   } else {
+    if (aim_status !== 0) {
+      message.warning('aim 状态已经不是进行中，不可更改关注信息。')
+      return
+    }
     status = isWatching ? 0 : 1
   }
   const params = { userId, aimId, type, status }
   try {
     const data = yield call(put_praiseAddAttention, params)
     yield put({type: AIM_DETAIL_PUT_PRAISE_AND_ATTENTION_SUCCEED, payload: { ...data.content }})
+    if (type === 2) {
+      yield fork(fetchres)
+    }
   } catch (err) {
     yield put({type: AIM_DETAIL_PUT_PRAISE_AND_ATTENTION_FAILED, error: err})
   }

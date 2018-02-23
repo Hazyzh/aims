@@ -11,6 +11,7 @@ comments.belongsTo(user, { foreignKey: 'create_user', as: 'aimUser', targetKey: 
 // aims.hasMany(updateLists, { foreignKey: 'aim_id', as: 'aimInfo', targetKey: 'id' })
 updateLists.belongsTo(aims, { foreignKey: 'aim_id', as: 'aimInfo', targetKey: 'id' })
 updateLists.belongsTo(user, { foreignKey: 'user_id', as: 'userInfo', targetKey: 'id' })
+watchings.belongsTo(user, { foreignKey: 'user_id', as: 'userInfo', targetKey: 'id' })
 
 module.exports = {
   user,

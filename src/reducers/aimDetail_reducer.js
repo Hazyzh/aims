@@ -8,7 +8,7 @@ const {
   AIM_DETAIL_POST_DETAIL_INFO_FAILED, AIM_DETAIL_GET_AIM_CHANGE_LISTS, AIM_DETAIL_GET_AIM_CHANGE_LISTS_SUCCEED,
   AIM_DETAIL_GET_AIM_CHANGE_LISTS_FAILED, AIM_DETAIL_POST_ADD_COMMENT, AIM_DETAIL_POST_ADD_COMMENT_SUCCEED, AIM_DETAIL_POST_ADD_COMMENT_FAILED,
   AIM_DETAIL_GET_AIM_COMMENTS, AIM_DETAIL_GET_AIM_COMMENTS_SUCCEED, AIM_DETAIL_GET_AIM_COMMENTS_FAILED, AIM_DETAIL_TOGGLE_COMMENT_STATE,
-  AIM_DETAIL_GET_PRAISE_AND_ATTENTION_SUCCEED, AIM_DETAIL_PUT_PRAISE_AND_ATTENTION_SUCCEED
+  AIM_DETAIL_GET_PRAISE_AND_ATTENTION_SUCCEED, AIM_DETAIL_PUT_PRAISE_AND_ATTENTION_SUCCEED, AIM_DETAIL_GET_WATCHINGS_LIST_SUCCEED
 } = types
 const initstate = {
   loading: false,
@@ -30,7 +30,8 @@ const initstate = {
   // 评论是否展开
   commentToggleState: {},
   isPraise: false,
-  isWatching: false
+  isWatching: false,
+  watchingUsers: []
 }
 
 export default createReducer(initstate, {
@@ -127,5 +128,10 @@ export default createReducer(initstate, {
   [AIM_DETAIL_PUT_PRAISE_AND_ATTENTION_SUCCEED]: (state, action) => {
     const { status, type } = action.payload
     return { ...state, [type === 1 ? 'isPraise' : 'isWatching']: status === 1 }
+  },
+  // 获取关注人员列表
+  [AIM_DETAIL_GET_WATCHINGS_LIST_SUCCEED]: (state, action) => {
+    const { watchingUsers } = action
+    return { ...state, watchingUsers }
   }
 })

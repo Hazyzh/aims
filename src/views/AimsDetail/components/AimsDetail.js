@@ -5,6 +5,7 @@ import Timeline from '../containers/TimeLine.js'
 import AimSteps from '../containers/AimSteps.js'
 import DetailComment from '../containers/DetailComment.js'
 import DetailTitle from '../containers/DetailTitle.js'
+import AimWatchings from '../containers/AimWatchings.js'
 import AimComment from '../containers/AimComment.js'
 import AimCommentList from '../containers/AimCommentList.js'
 
@@ -17,6 +18,8 @@ const AimsDetail = ({ loading, aimDetailInfo, userInfo }) =>
     <p className='aims-deatil-content'>{aimDetailInfo.aim_content}</p>
     <Timeline />
     <AimSteps />
+    <Divider />
+    <AimWatchings />
     {
       aimDetailInfo.aim_status === 0 && userInfo.id === aimDetailInfo.user_id &&
       <DetailComment />
